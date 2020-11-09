@@ -9,8 +9,14 @@
 	"author": "Ruben van Oers",
 	"license": "ISC",
 	"dependencies": {
+		"assert": "^2.0.0",
+		"body-parser": "^1.19.0",
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
+		"express": "^4.17.1",
 		"mocha": "^8.1.2",
 		"mongoose": "^5.10.1",
-		"nodemon": "^2.0.4"
+		"mongoose-unique-validator": "^2.0.3",
+		"nodemon": "^2.0.6"
 	}
 }
