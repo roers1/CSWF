@@ -1,23 +1,47 @@
 const express = require('express');
 const app = express();
-
-// parse body of incoming request
+const config = require('./config/config');
 const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+var logger = require('tracer').dailyfile({
+	root: '.',
+	maxLogFiles: 10,
+	allLogsFileName: 'myAppName',
+});
+//const logger = config.logger;
+
+app.use(function (req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', '*');
+	res.header(
+		'Access-Control-Allow-Headers',
+		'Origin, X-Requested-With, Content-Type, Accept, password'
+	);
+	next();
+});
+
+app.all('*', (req, res, next) => {
+	logger.log(
+		'Hostname: ' + req.connection.remoteAddress + ' route: ' + req.url
+	);
+	next();
+});
+
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+	})
+);
 
 app.use(bodyParser.json());
-//const userRoutes = require('./src/controllers/user_routes');
-//const threadRoutes = require('./src/controllers/thread_routes');
-//const commentRoutes = require('./src/controllers/comment_routes');
-//const friendRoutes = require('./src/controllers/friend_routes');
 
-//app.use('/api/users', userRoutes);
-//app.use('/api/threads', threadRoutes);
-//app.use('/api/comments', commentRoutes);
-//app.use('/api/friends', friendRoutes);
+const userRoutes = require('./src/controllers/user_routes');
+const authentication = require('./src/controllers/authentication');
 
-app.use((req, res, next) => {
-	const error = new Error('Not found');
+app.use('/api/login', authentication);
+app.use('/api/user', userRoutes);
+
+app.use('*', (req, res, next) => {
+	const error = new Error('Route not found');
 	error.status = 404;
 	next(error);
 });

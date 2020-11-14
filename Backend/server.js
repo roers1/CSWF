@@ -5,7 +5,7 @@ const app = require('./app');
 // since app inherits from Event Emitter, we can use this to get the app started
 // after the database is connected
 app.on('databaseConnected', function () {
-	const port = 3050;
+	const port = process.env.PORT || 3000;
 
 	app.listen(port, () => {
 		console.log(`server is listening on port ${port}`);
@@ -14,7 +14,7 @@ app.on('databaseConnected', function () {
 
 // connect to the database
 mongoose
-	.connect('mongodb://localhost:27017/studdit', {
+	.connect('mongodb://localhost:27017/hairdresser', {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
