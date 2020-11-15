@@ -9,35 +9,33 @@ const checkAuth = require('../../middleware/check-auth');
 const logger = config.logger;
 
 router.post('/', async function (req, res) {
-	await bcrypt.hash(req.body.password, 10, async function (err, hash) {
-		console.log(hash);
-		if (err) {
-			return res.json(500).json({
-				error: err,
-			});
-		} else {
-			const user = new User(req.body);
-			user.Password = hash;
-
-			await user.save()
-				.catch((err) => {
-					console.log(err);
-					res.status(400).json({
-						'message': {
-							'succes': 'false',
-							'status': 400,
-							'message': err.message
-						}
-					})
-				});
-
-			res.status(200).send({
-				succes: 'true',
-				status: 200,
-				message: 'user succesfully registered:',
-			})
-		}
-	});
+	try {
+		await bcrypt.hash(req.body.password, 10, async function (err, hash) {
+			if (err) {
+				throw new Error('request failed')
+			} else {
+				const user = new User(req.body);
+				user.Password = hash;
+	
+				await user.save().catch((err) => {throw err});
+	
+				res.status(200).send({
+					succes: 'true',
+					status: 200,
+					message: 'user succesfully registered:',
+					user: user
+				})
+			}
+		});
+	} catch(err) {
+		res.status(400).json({
+			'message': {
+				'succes': 'false',
+				'status': 400,
+				'message': err.message
+			}
+		})
+	}
 });
 
 router.get('/', (req, res, next) => {
