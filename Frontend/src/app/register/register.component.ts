@@ -5,7 +5,6 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, UserService } from '../services';
 import { User } from '../models';
-import { resolveCname } from 'dns';
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
@@ -61,22 +60,25 @@ export class RegisterComponent implements OnInit {
       false
     );
 
-    this.userService
-      .register(user)
-      .pipe(first())
-      .subscribe(
-        (res) => {
-          console.log('hieronder is res');
-          console.log(res);
-          this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          console.log('hieronder is error');
-          console.log(error);
-          this.alertService.error(error);
-          this.loading = false;
-        }
-      );
+    console.log('registering')
+    this.userService.register(user)
+
+    // this.userService
+    //   .register(user)
+    //   .pipe(first())
+    //   .subscribe(
+    //     (res) => {
+    //       console.log('hieronder is res');
+    //       console.log(res);
+    //       this.alertService.success('Registration successful', true);
+    //       this.router.navigate(['/login']);
+    //     },
+    //     (error) => {
+    //       console.log('hieronder is error');
+    //       console.log(error);
+    //       this.alertService.error(error);
+    //       this.loading = false;
+    //     }
+    //   );
   }
 }
