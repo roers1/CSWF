@@ -11,19 +11,24 @@ export class UserService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      responseType: 'json',
-      'observe?': 'body',
+      'Content-Type': 'application/json'
     }),
   };
 
   constructor(private http: HttpClient, private alertService: AlertService) {}
 
-  register(user: User): Observable<User> {
-    return this.http.post<User>(this.userRoute, user, this.httpOptions).pipe(
-      tap((newUser: User) => console.log(`added user w/ id=${newUser._id}`)),
-      catchError(this.handleError<User>('registerUser'))
-    );
+  register(user: User) {
+    this.http.post(this.userRoute, user, this.httpOptions)
+    .subscribe(
+      res => { console.log(res)},
+      error => { this.alertService.error(error.message) }
+    )
+
+
+    // return this.http.post<User>(this.userRoute, user, this.httpOptions).pipe(
+    //   tap((newUser: User) => console.log(`added user w/ id=${newUser._id}`)),
+    //   catchError(this.handleError<User>('registerUser'))
+    // );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

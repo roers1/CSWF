@@ -2,7 +2,7 @@
 	"name": "hairdresser_backend",
 	"version": "1.0.0",
 	"description": "Client side web frameworks backend",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"test": "nodemon --exec mocha -R min"
 	},
@@ -10,7 +10,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"assert": "^2.0.0",
-		"bcrypt": "^5.0.0",
+		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
 		"chai": "^4.2.0",
 		"chai-http": "^4.3.0",
