@@ -13,16 +13,11 @@ router.post('/', (req, res, next) => {
 		email: req.body.email,
 	}).then((user) => {
 		if (user === null) {
-			return res.status(401).json({
+			return res.status(400).json({
 				message: 'Login failed',
 			});
 		} else {
-			console.log(req.body.password, user.password);
-			console.log(user);
 			bcrypt.compare(req.body.password, user.password, (err, result) => {
-				console.log(err);
-				console.log(result);
-
 				if (err) {
 					return res.status(400).json({
 						message: 'Invalid username or password',

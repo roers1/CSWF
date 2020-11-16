@@ -26,7 +26,7 @@ export class UserService {
       }),
     };
 
-    console.log(httpOptionsUpdate);
+    console.log(user);
     return this.http.put(`${this.userRoute}/`, { user }, httpOptionsUpdate);
   }
 }

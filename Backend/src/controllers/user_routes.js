@@ -38,16 +38,36 @@ router.post('/register', async function (req, res) {
 	});
 });
 
-router.put('/', checkAuth, async function (req, res) {
-	console.log(req.Id);
+router.put('/', checkAuth, (req, res) => {
 	User.findById(req.Id).then((user) => {
 		console.log(req.body);
-	});
-});
-
-router.get('/', (req, res, next) => {
-	res.status(200).json({
-		message: 'get methode on route api/user',
+		if (user === null) {
+			res.status(400).json({
+				message: 'Invalid credentials',
+			});
+		} else {
+			user
+				.updateOne({
+					firstName: req.body.user.firstName,
+					lastName: req.body.user.lastName,
+					address: req.body.user.address,
+					postalCode: req.body.user.postalCode,
+					city: req.body.user.city,
+					phoneNumber: req.body.user.phoneNumber,
+					email: req.body.user.email,
+				})
+				.exec()
+				.then(() => {
+					res.status(200).json({
+						message: 'user updates',
+					});
+				})
+				.catch((err) => {
+					res.status(500).json({
+						error: err.message,
+					});
+				});
+		}
 	});
 });
 
