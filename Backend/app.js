@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
 const config = require('./config/config');
+const cors = require('cors');
+
 const bodyParser = require('body-parser');
-var logger = require('tracer').dailyfile({
-	root: '.',
-	maxLogFiles: 10,
-	allLogsFileName: 'myAppName',
-});
-//const logger = config.logger;
+
+app.use(cors());
 
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -20,7 +18,7 @@ app.use(function (req, res, next) {
 });
 
 app.all('*', (req, res, next) => {
-	logger.log(
+	console.log(
 		'Hostname: ' + req.connection.remoteAddress + ' route: ' + req.url
 	);
 	next();

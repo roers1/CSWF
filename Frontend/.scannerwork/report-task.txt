@@ -1,6 +1,0 @@
-projectKey=CSWF
-serverUrl=https://sonarqube.avans-informatica-breda.nl
-serverVersion=7.4.0.18908
-dashboardUrl=https://sonarqube.avans-informatica-breda.nl/dashboard?id=CSWF
-ceTaskId=AXWi_c_KTNm1xigl97BP
-ceTaskUrl=https://sonarqube.avans-informatica-breda.nl/api/ce/task?id=AXWi_c_KTNm1xigl97BP

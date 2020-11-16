@@ -1,5 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../models/user');
@@ -8,46 +8,40 @@ const jwt = require('jsonwebtoken');
 const checkAuth = require('../../middleware/check-auth');
 const logger = config.logger;
 
-router.post('/', async function (req, res) {
-	try {
-		await bcrypt.hash(req.body.password, 10, async function (err, hash) {
-			try {
-				if (err) {
-					throw new Error('request failed');
-				} else {
-					const user = new User(req.body);
-					user.Password = hash;
+router.post('/register', async function (req, res) {
+	bcrypt.hash(req.body.password, 10, async function (err, hash) {
+		try {
+			if (err) {
+				throw new Error('request failed');
+			} else {
+				const user = new User(req.body);
+				user.password = hash;
 
-					await user.save().catch((err) => {
-						throw err;
-					});
+				await user.save().catch((err) => {
+					throw err;
+				});
 
-					res.status(200).send({
-						succes: 'true',
-						status: 200,
-						message: 'user succesfully registered:',
-						user: user,
-					});
-				}
-			} catch (err) {
-				res.status(400).json({
-					message: {
-						succes: 'false',
-						status: 400,
-						message: err.message,
-					},
+				res.status(200).send({
+					succes: 'true',
+					status: 200,
+					message: 'user succesfully registered:',
+					user: user,
 				});
 			}
-		});
-	} catch (err) {
-		res.status(400).json({
-			message: {
+		} catch (err) {
+			res.status(400).json({
 				succes: 'false',
 				status: 400,
 				message: err.message,
-			},
-		});
-	}
+			});
+		}
+	});
+});
+
+router.put('/', checkAuth, async function (req, res) {
+	User.findOne({ _id: req._id }).then((user) => {
+		console.log(user);
+	});
 });
 
 router.get('/', (req, res, next) => {

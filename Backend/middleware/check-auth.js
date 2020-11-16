@@ -3,10 +3,10 @@ const config = require('../config/config');
 const logger = config.logger;
 
 module.exports = (req, res, next) => {
-	const authorizationToken = req.headers.authorization;
+	const authorizationToken = req.headers.jwt;
 
 	if (!authorizationToken) {
-		logger.warn('Validate token failed: no token available');
+		console.log('Validate token failed: no token available');
 
 		return res.status(401).json({
 			message: 'no token available',
@@ -15,22 +15,22 @@ module.exports = (req, res, next) => {
 
 	jwt.verify(authorizationToken, 'secret', (err, payload) => {
 		if (err) {
-			logger.warn('Validate token failed: authorization failed');
+			console.log('Validate token failed: authorization failed');
 			return res.status(401).json({
 				message: 'auth failed',
 			});
 		}
 
-		logger.debug(payload);
+		console.log(payload);
 		if (payload) {
-			logger.debug('payload werkt');
+			console.log('payload werkt');
 		}
 
 		if (payload && payload.Id) {
-			logger.debug('token is valid', payload);
+			console.log('token is valid', payload);
 
 			req.Id = payload.Id;
-			logger.debug(req.Id);
+			console.log(req.Id);
 			next();
 		} else {
 			logger.warn('Validate token failed: userId is missing');

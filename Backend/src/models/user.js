@@ -49,6 +49,7 @@ const UserSchema = new Schema({
 	email: {
 		type: String,
 		required: [true, 'EmailAddress is required.'],
+		unique: [true],
 		validate: {
 			validator: function (v) {
 				return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -69,7 +70,9 @@ const UserSchema = new Schema({
 	},
 });
 
-UserSchema.plugin(uniqueValidator);
+UserSchema.plugin(uniqueValidator, {
+	message: 'Email already used for an account',
+});
 
 const User = mongoose.model('user', UserSchema);
 
