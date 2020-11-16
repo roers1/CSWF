@@ -56,7 +56,6 @@ export class AccountComponent implements OnInit {
       .subscribe(
         (data) => {
           this.alertService.success('update successful', true);
-          this.router.navigate(['/account']);
         },
         (error) => {
           this.alertService.error(error);

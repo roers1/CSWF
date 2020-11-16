@@ -30,7 +30,7 @@ router.post('/', (req, res, next) => {
 				}
 
 				if (result) {
-					console.log(result);
+					//console.log(result);
 					const token = jwt.sign(
 						{
 							Id: user._id.toString(),
@@ -40,7 +40,7 @@ router.post('/', (req, res, next) => {
 							expiresIn: '1h',
 						}
 					);
-
+					//	console.log(token);
 					user.password = undefined;
 					return res.status(200).json({
 						message: 'Login succesfull',

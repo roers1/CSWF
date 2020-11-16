@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          console.log('DATAAAAAA');
+          this.alertService.success('logged in', true);
           this.router.navigate(['']);
         },
         (error) => {

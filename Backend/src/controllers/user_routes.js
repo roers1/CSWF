@@ -39,8 +39,9 @@ router.post('/register', async function (req, res) {
 });
 
 router.put('/', checkAuth, async function (req, res) {
-	User.findOne({ _id: req._id }).then((user) => {
-		console.log(user);
+	console.log(req.Id);
+	User.findById(req.Id).then((user) => {
+		console.log(req.body);
 	});
 });
 

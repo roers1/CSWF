@@ -19,8 +19,14 @@ export class UserService {
   }
 
   update(user: User) {
-    this.httpOptions.headers.set('jwt', localStorage.getItem('jwtToken'));
-    console.log(this.httpOptions);
-    return this.http.put(`${this.userRoute}/`, { user }, this.httpOptions);
+    let httpOptionsUpdate = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        jwt: localStorage.getItem('jwtToken'),
+      }),
+    };
+
+    console.log(httpOptionsUpdate);
+    return this.http.put(`${this.userRoute}/`, { user }, httpOptionsUpdate);
   }
 }
