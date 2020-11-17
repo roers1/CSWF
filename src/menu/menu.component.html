@@ -13,6 +13,11 @@
     <li class="nav-item">
       <a [routerLink]="['/account']" class="nav-link">Account</a>
     </li>
+    <div *ngIf="authenticationService.user.employee">
+      <li class="nav-item">
+        <a [routerLink]="['/register']" class="nav-link">Register Employee</a>
+      </li>
+    </div>
     <li class="nav-item">
       <a [routerLink]="['/login']" class="nav-link">Logout</a>
     </li>

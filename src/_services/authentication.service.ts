@@ -8,8 +8,8 @@ import { User } from 'src/_models';
 export class AuthenticationService {
   user: User;
 
-  //private userRoute = 'http://localhost:3000/api/login';
-  private userRoute = 'https://hairdresserbackend.herokuapp.com/api/login';
+  private userRoute = 'http://localhost:3000/api/login';
+  //private userRoute = 'https://hairdresserbackend.herokuapp.com/api/login';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -27,9 +27,7 @@ export class AuthenticationService {
           if (res) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             this.user = res.user;
-            console.log(this.user);
             localStorage.setItem('jwtToken', res.token);
-            localStorage.setItem('user', JSON.stringify(res.user));
           }
 
           return res;
@@ -40,6 +38,6 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('jwtToken');
-    localStorage.removeItem('user');
+    this.user = null;
   }
 }

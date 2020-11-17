@@ -5,8 +5,8 @@ import { User } from '../_models';
 
 @Injectable()
 export class UserService {
-  //private userRoute = 'http://localhost:3000/api/user';
-  private userRoute = 'https://hairdresserbackend.herokuapp.com/api/user';
+  private userRoute = 'http://localhost:3000/api/user';
+  //private userRoute = 'https://hairdresserbackend.herokuapp.com/api/user';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,9 +28,5 @@ export class UserService {
       }),
     };
     return this.http.put(`${this.userRoute}/`, { user }, httpOptionsUpdate);
-  }
-
-  getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));
   }
 }
