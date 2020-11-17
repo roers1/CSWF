@@ -1,9 +1,14 @@
+import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from 'src/_models';
-import { AlertService, UserService } from 'src/_services';
+import {
+  AlertService,
+  AuthenticationService,
+  UserService,
+} from 'src/_services';
 
 @Component({
   selector: 'app-account',
@@ -14,17 +19,16 @@ export class AccountComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-  currentUser: User;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    public authenticationService: AuthenticationService
   ) {}
 
   ngOnInit() {
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.registerForm = this.formBuilder.group({
       firstName: [Validators.required],
       lastName: [Validators.required],
@@ -55,7 +59,7 @@ export class AccountComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success('update successful', true);
+          this.alertService.success(data['message'], true);
           this.loading = false;
         },
         (error) => {

@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      employee: [false],
     });
   }
 
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success('Registration successful', true);
+          this.alertService.success(data['message'], true);
           this.router.navigate(['/login']);
         },
         (error) => {

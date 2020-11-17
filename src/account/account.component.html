@@ -1,4 +1,4 @@
-<h2>Welcome {{ currentUser.firstName }}</h2>
+<h2>Welcome {{ authenticationService.user.firstName }}</h2>
 <hr />
 <div class="container">
   <div class="row">
@@ -15,7 +15,7 @@
               class="form-control"
               formControlName="firstName"
               placeholder="First Name"
-              [(ngModel)]="currentUser.firstName"
+              [(ngModel)]="authenticationService.user.firstName"
               [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
             />
             <div
@@ -35,7 +35,7 @@
               class="form-control"
               formControlName="lastName"
               placeholder="Last Name"
-              [(ngModel)]="currentUser.lastName"
+              [(ngModel)]="authenticationService.user.lastName"
               [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
             />
             <div
@@ -56,7 +56,7 @@
             class="form-control"
             formControlName="streetAddress"
             placeholder="Address"
-            [(ngModel)]="currentUser.streetAddress"
+            [(ngModel)]="authenticationService.user.streetAddress"
             [ngClass]="{ 'is-invalid': submitted && f.streetAddress.errors }"
           />
           <div
@@ -77,7 +77,7 @@
               class="form-control"
               formControlName="postalCode"
               placeholder="Postal Code"
-              [(ngModel)]="currentUser.postalCode"
+              [(ngModel)]="authenticationService.user.postalCode"
               [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }"
             />
             <div
@@ -97,7 +97,7 @@
               class="form-control"
               formControlName="city"
               placeholder="City"
-              [(ngModel)]="currentUser.city"
+              [(ngModel)]="authenticationService.user.city"
               [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
             />
             <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
@@ -113,7 +113,7 @@
             class="form-control"
             formControlName="phoneNumber"
             placeholder="0618293345"
-            [(ngModel)]="currentUser.phoneNumber"
+            [(ngModel)]="authenticationService.user.phoneNumber"
             [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }"
           />
           <div
@@ -133,7 +133,7 @@
             class="form-control"
             formControlName="email"
             placeholder="mail@outlook.com"
-            [(ngModel)]="currentUser.email"
+            [(ngModel)]="authenticationService.user.email"
             [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
           />
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">

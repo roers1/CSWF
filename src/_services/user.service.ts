@@ -27,8 +27,10 @@ export class UserService {
         jwt: localStorage.getItem('jwtToken'),
       }),
     };
-
-    console.log(user);
     return this.http.put(`${this.userRoute}/`, { user }, httpOptionsUpdate);
+  }
+
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user'));
   }
 }

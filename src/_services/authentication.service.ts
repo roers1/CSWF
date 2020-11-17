@@ -2,10 +2,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserService } from './user.service';
+import { User } from 'src/_models';
 
 @Injectable()
 export class AuthenticationService {
-  // private userRoute = 'http://localhost:3000/api/login';
+  user: User;
+
+  //private userRoute = 'http://localhost:3000/api/login';
   private userRoute = 'https://hairdresserbackend.herokuapp.com/api/login';
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,6 +26,8 @@ export class AuthenticationService {
           // login successful if there's a jwt token in the response
           if (res) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
+            this.user = res.user;
+            console.log(this.user);
             localStorage.setItem('jwtToken', res.token);
             localStorage.setItem('user', JSON.stringify(res.user));
           }
