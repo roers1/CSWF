@@ -14,11 +14,16 @@ import { MenuComponent } from './menu/menu.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterLocationComponent } from './register-location/register-location.component';
 import { AlertComponent } from './alert/alert.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthGuard } from 'src/AuthGuards/auth.guard';
 import { AlertService } from './services/alert.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,8 +45,13 @@ import { AuthService } from './services/auth.service';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [AuthGuard, AlertService, AuthService, UserService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
