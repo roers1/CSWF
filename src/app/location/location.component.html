@@ -1,0 +1,26 @@
+<ul class="list-group">
+  <div *ngFor="let location of locations">
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-6">
+          {{ location.name }}
+        </div>
+        <div class="col-md-3">
+          {{ location.name }}
+        </div>
+        <div class="col-md-3">
+          <button mat-raised-button>Click Me</button>
+        </div>
+      </div>
+    </li>
+  </div>
+</ul>
+
+<div *ngIf="selectedLocation">
+  <app-edit-location></app-edit-location>
+</div>
+
+<button class="btn-primary" (click)="registerLocation()">Add location</button>
+<div *ngIf="register">
+  <app-register-location [(registerStatus)]="register"></app-register-location>
+</div>

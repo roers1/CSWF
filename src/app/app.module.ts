@@ -1,40 +1,47 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { routing } from '../app/app-routing.module';
-
-import { AlertComponent } from '../_directives';
-import { AuthGuard } from '../_guards';
-import { ErrorInterceptor } from '../_helpers';
-import { AlertService, AuthenticationService, UserService } from '../_services';
-import { HomeComponent } from '../home';
-import { LoginComponent } from '../login';
-import { RegisterComponent } from '../register';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AccountComponent } from '../account/account.component';
-import { MenuComponent } from '../menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccountComponent } from './account/account.component';
+import { AdminComponent } from './admin/admin.component';
+import { EditLocationComponent } from './edit-location/edit-location.component';
+import { HomeComponent } from './home/home.component';
+import { LocationComponent } from './location/location.component';
+import { LoginComponent } from './login/login.component';
+import { MenuComponent } from './menu/menu.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterLocationComponent } from './register-location/register-location.component';
+import { AlertComponent } from './alert/alert.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from 'src/AuthGuards/auth.guard';
+import { AlertService } from './services/alert.service';
+import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
-  imports: [BrowserModule, ReactiveFormsModule, HttpClientModule, routing],
   declarations: [
     AppComponent,
-    AlertComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
     AccountComponent,
+    AdminComponent,
+    EditLocationComponent,
+    HomeComponent,
+    LocationComponent,
+    LoginComponent,
     MenuComponent,
+    RegisterComponent,
+    RegisterLocationComponent,
+    AlertComponent,
   ],
-  providers: [
-    AuthGuard,
-    AlertService,
-    AuthenticationService,
-    UserService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
+  providers: [AuthGuard, AlertService, AuthService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

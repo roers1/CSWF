@@ -24,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -89,6 +89,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -124,6 +125,6 @@
   },
   "defaultProject": "hairdresser",
   "cli": {
-    "analytics": "e9f1c5bd-e1f1-4000-bac1-3efe91021f79"
+    "analytics": "2f96cbb2-663a-4dcb-9d8a-2565f84478f6"
   }
 }

@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light bg-light">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a [routerLink]="['/create/appointment']" class="nav-link"
+        >My appointments</a
+      >
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/appointments']" class="nav-link"
+        >Create appointment</a
+      >
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/account']" class="nav-link">Account</a>
+    </li>
+    <div *ngIf="authService.user.employee">
+      <li class="nav-item">
+        <a [routerLink]="['/admin']" class="nav-link">Admin Options</a>
+      </li>
+    </div>
+    <li class="nav-item">
+      <a [routerLink]="['/login']" class="nav-link">Logout</a>
+    </li>
+  </ul>
+</nav>
