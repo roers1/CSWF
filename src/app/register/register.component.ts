@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MyErrorStateMatcher } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -12,58 +19,54 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
-  loading = false;
-  submitted = false;
+  EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
+  registerForm = new FormGroup({
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    streetAddress: new FormControl('', [Validators.required]),
+    postalCode: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    dateOfBirth: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.EMAIL_REGEX),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.PASSWORD_REGEX),
+    ]),
+  });
+  hide = false;
+  matcher = new MyErrorStateMatcher();
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
     private alertService: AlertService,
-    public authService: AuthService
+    public authService: AuthService,
+    private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      streetAddress: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      city: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      employee: [false],
-    });
-  }
-
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.registerForm.controls;
-  }
+  ngOnInit() {}
 
   onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
     this.userService
       .register(this.registerForm.value)
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success(data['message'], true);
+          this._snackBar.open(data['message'], 'Ok', {
+            duration: 2000,
+          });
           this.router.navigate(['/login']);
         },
         (error) => {
-          this.alertService.error(error);
-          this.loading = false;
+          this._snackBar.open(error, 'Ok,', {
+            duration: 2000,
+          });
         }
       );
   }

@@ -1,25 +1,12 @@
-<nav class="navbar navbar-light bg-light">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a [routerLink]="['/create/appointment']" class="nav-link"
-        >My appointments</a
-      >
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['/appointments']" class="nav-link"
-        >Create appointment</a
-      >
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['/account']" class="nav-link">Account</a>
-    </li>
-    <div *ngIf="authService.user.employee">
-      <li class="nav-item">
-        <a [routerLink]="['/admin']" class="nav-link">Admin Options</a>
-      </li>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>Avans forever!</h1>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="'/login'"> Login </a>
+      <a mat-button [routerLink]="'/register'"> Create Account </a>
+      <a mat-button [routerLink]="'/contacts'"> appointments </a>
+      <a mat-button [routerLink]="'/uitleg'"> App-uitleg </a>
     </div>
-    <li class="nav-item">
-      <a [routerLink]="['/login']" class="nav-link">Logout</a>
-    </li>
-  </ul>
-</nav>
+  </mat-toolbar-row>
+</mat-toolbar>

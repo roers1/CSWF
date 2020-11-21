@@ -24,6 +24,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { UitlegComponent } from './uitleg/uitleg.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -38,6 +49,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RegisterComponent,
     RegisterLocationComponent,
     AlertComponent,
+    UitlegComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,9 +61,21 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    NgbModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatDatepickerModule,
   ],
   providers: [AuthGuard, AlertService, AuthService, UserService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
