@@ -1,13 +1,30 @@
 <h4><label for="search-box">Location Search</label></h4>
-<input #searchBox id="search-box" (input)="search(searchBox.value)" />
+<input
+  style="margin-bottom: 16px"
+  #searchBox
+  id="search-box"
+  (input)="search(searchBox.value)"
+/>
+<hr />
 
-<ul>
-  <li *ngFor="let location of locations$ | async">
-    <a routerLink="/location/{{ location._id }}">
-      {{ location.city }}
-    </a>
-  </li>
-</ul>
+<div class="list-group">
+  <div *ngFor="let location of locations$ | async">
+    <div class="d-flex w-100">
+      <h1 class="col-md-8">{{ location.city }}</h1>
+      <button class="col-md-2">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button class="col-md-2">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <p class="mb-1" style="margin-left: 16px">
+      {{ location.streetAddress }}
+    </p>
+
+    <hr />
+  </div>
+</div>
 
 <div class="form-row">
   <div class="col-md-6" style="margin: 5px">

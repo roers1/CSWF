@@ -1,0 +1,8 @@
+.mat-list-base .mat-list-item.mat-multi-line,
+.mat-list-base .mat-list-option .mat-multi-line {
+  height: 56px;
+}
+
+.mat-list {
+  margin: 20px;
+}

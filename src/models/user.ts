@@ -1,13 +1,15 @@
-﻿﻿export interface User {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  streetAddress: string;
-  postalCode: string;
-  city: string;
-  dateOfBirth: string;
-  phoneNumber: number;
-  email: string;
-  password: string;
-  employee: boolean;
+﻿﻿export class User {
+  constructor(
+    public _id: string,
+    public firstName: string,
+    public lastName: string,
+    public streetAddress: string,
+    public postalCode: string,
+    public city: string,
+    public dateOfBirth: string,
+    public phoneNumber: number,
+    public email: string,
+    public password: string,
+    public employee: boolean
+  ) {}
 }

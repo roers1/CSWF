@@ -57,12 +57,12 @@ export class RegisterLocationComponent implements OnInit {
 
     this.loading = true;
     this.locationService
-      .register(this.registerForm.value)
+      .register(this.registerForm.value, this.authService.user._id)
       .pipe(first())
       .subscribe(
         (data) => {
           this.alertService.success(data['message'], true);
-          this.router.navigate(['..']);
+          this.router.navigate(['/location']);
         },
         (error) => {
           this.alertService.error(error);

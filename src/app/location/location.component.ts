@@ -19,6 +19,7 @@ import { LocationService } from '../services/location.service';
 })
 export class LocationComponent implements OnInit {
   locations$: Observable<Location[]>;
+  locations: Location[];
   private searchTerms = new Subject<string>();
 
   constructor(
@@ -28,6 +29,17 @@ export class LocationComponent implements OnInit {
 
   search(term: string): void {
     this.searchTerms.next(term);
+    //console.log(this.locations$);
+  }
+
+  getLocations(): void {
+    this.locationService
+      .getLocations()
+      .subscribe((locations: any) => (this.locations = locations.locations));
+  }
+
+  iterateLocations(): void {
+    this.locations.forEach((x) => console.log(x));
   }
 
   ngOnInit(): void {
@@ -41,5 +53,6 @@ export class LocationComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.locationService.searchLocations(term))
     );
+    this.getLocations();
   }
 }
