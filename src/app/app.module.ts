@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditLocationComponent } from './edit-location/edit-location.component';
 import { HomeComponent } from './home/home.component';
@@ -35,11 +34,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccountComponent,
     AdminComponent,
     EditLocationComponent,
     HomeComponent,
@@ -50,6 +49,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     RegisterLocationComponent,
     AlertComponent,
     UitlegComponent,
+    MyAccountComponent,
   ],
   imports: [
     BrowserModule,

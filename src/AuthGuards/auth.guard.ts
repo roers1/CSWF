@@ -12,13 +12,8 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.user) {
-      if (this.authService.user.employee) {
-        return true;
-      }
-      // Not an employee
-      this.router.navigate(['/home']);
-      return false;
+    if (this.authService.loggedIn) {
+      return true;
     }
 
     // not logged in so redirect to login page with the return url

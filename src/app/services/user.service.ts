@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../../models/user';
+import { Environment } from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
+import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  // private userRoute = 'http://localhost:3000/api/user';
-  private userRoute = 'https://hairdresserbackend.herokuapp.com/api/user';
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -18,16 +18,21 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   register(user: User) {
-    return this.http.post(`${this.userRoute}/register`, user, this.httpOptions);
+    return this.http.post(
+      `${environment.API}user/register`,
+      user,
+      this.httpOptions
+    );
   }
 
-  update(user: User) {
+  put(user: User) {
     let httpOptionsUpdate = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        jwt: localStorage.getItem('jwtToken'),
+        jwtToken: localStorage.getItem('jwtToken'),
+        id: user._id,
       }),
     };
-    return this.http.put(`${this.userRoute}/`, { user }, httpOptionsUpdate);
+    return this.http.put(`${environment.API}user`, { user }, httpOptionsUpdate);
   }
 }

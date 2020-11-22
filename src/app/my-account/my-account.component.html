@@ -5,6 +5,7 @@
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
           <input
+            [(ngModel)]="authService.user.firstName"
             matInput
             formControlName="firstName"
             type="firstName"
@@ -16,6 +17,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Last Name</mat-label>
           <input
+            [(ngModel)]="authService.user.lastName"
             matInput
             formControlName="lastName"
             type="lastName"
@@ -26,9 +28,10 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-12">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="width-100">
           <mat-label>streetAddress</mat-label>
           <input
+            [(ngModel)]="authService.user.streetAddress"
             matInput
             placeholder="street 55"
             formControlName="streetAddress"
@@ -43,6 +46,7 @@
         <mat-form-field appearance="fill">
           <mat-label>email</mat-label>
           <input
+            [(ngModel)]="authService.user.email"
             matInput
             placeholder="mail@outlook.com"
             formControlName="email"
@@ -57,6 +61,7 @@
         <mat-form-field appearance="fill">
           <mat-label>phoneNumber</mat-label>
           <input
+            [(ngModel)]="authService.user.phoneNumber"
             matInput
             placeholder="0612345678"
             formControlName="phoneNumber"
@@ -71,6 +76,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Postal Code</mat-label>
           <input
+            [(ngModel)]="authService.user.postalCode"
             matInput
             placeholder="5685GB"
             formControlName="postalCode"
@@ -83,6 +89,7 @@
         <mat-form-field appearance="fill">
           <mat-label>city</mat-label>
           <input
+            [(ngModel)]="authService.user.city"
             matInput
             placeholder="Amsterdam"
             formControlName="city"
@@ -97,6 +104,7 @@
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Birthdate</mat-label>
           <input
+            [(ngModel)]="authService.user.dateOfBirth"
             matInput
             [matDatepicker]="picker"
             formControlName="dateOfBirth"
@@ -110,31 +118,14 @@
         </mat-form-field>
       </div>
     </div>
-
     <div class="form-row">
-      <div class="form-group col-md-12">
-        <mat-form-field appearance="fill" class="width-100">
-          <mat-label>Enter password</mat-label>
-          <input
-            matInput
-            [type]="hide ? 'password' : 'text'"
-            formControlName="password"
-            type="password"
-            [errorStateMatcher]="matcher"
-          />
-        </mat-form-field>
+      <div class="col-md-6" style="margin: 5px">
+        <button mat-raised-button type="submit">Update my account</button>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-6" style="margin: 5px">
-        <button mat-raised-button type="submit">Register</button>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="col-md-6" style="margin: 5px">
-        <a mat-raised-button [routerLink]="'/login'">
-          Already have an account? Login!
-        </a>
+        <a mat-raised-button [routerLink]="'/home'"> Home </a>
       </div>
     </div>
   </form>
