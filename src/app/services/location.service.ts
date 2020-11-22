@@ -2,15 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 import { Location } from '../../models/location';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationService {
-  //private locationRoute = 'http://localhost:3000/api/admin/location';
-  private locationRoute =
-    'https://hairdresserbackend.herokuapp.com/api/admin/location';
+  location: Location;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,40 +20,23 @@ export class LocationService {
   constructor(private http: HttpClient) {}
 
   register(location: Location) {
-    return this.http.post(`${this.locationRoute}`, location, this.httpOptions);
-  }
-
-  getLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>(this.locationRoute).pipe(
-      map((data) => data),
-      catchError(this.handleError<Location[]>('getLocations', []))
+    return this.http.post(
+      `${environment.API}admin/location`,
+      location,
+      this.httpOptions
     );
   }
 
-  update(location: Location) {
-    let httpOptionsUpdate = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        jwt: localStorage.getItem('jwtToken'),
-      }),
-    };
-    return this.http.put(
-      `${this.locationRoute}`,
-      { location },
-      httpOptionsUpdate
-    );
-  }
+  // getLocations(): Observable<Location[]> {}
 
-  delete(location: Location) {
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        jwt: localStorage.getItem('jwtToken'),
-      }),
-    };
+  update(location: Location) {}
+
+  delete(location: Location) {}
+
+  searchLocations(term: string): Observable<Location[]> {
     return this.http
-      .delete(`${this.locationRoute}/${location._id}`, httpOptions)
-      .pipe(catchError(this.handleError('deleteLocation')));
+      .get<Location[]>(`${environment.API}admin/location/${term}`)
+      .pipe(catchError(this.handleError<Location[]>('searchHeroes', [])));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

@@ -1,7 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { MyErrorStateMatcher } from '../login/login.component';
 import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
 import { LocationService } from '../services/location.service';
@@ -15,37 +21,35 @@ import { UserService } from '../services/user.service';
 export class RegisterLocationComponent implements OnInit {
   loading = false;
   submitted = false;
-  @Input() registerStatus: boolean;
-  @Output() registerStatusChange = new EventEmitter<boolean>();
 
-  registerForm: FormGroup;
+  EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  registerForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    streetAddress: new FormControl('', [Validators.required]),
+    postalCode: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.EMAIL_REGEX),
+    ]),
+  });
+
+  hide = false;
+
+  matcher = new MyErrorStateMatcher();
   constructor(
     public authService: AuthService,
     private locationService: LocationService,
-    private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
     private alertService: AlertService
   ) {}
 
-  ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      streetAddress: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      city: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      email: ['', Validators.required],
-    });
-  }
-
-  get f() {
-    return this.registerForm.controls;
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
-    this.submitted = true;
-
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
@@ -59,7 +63,6 @@ export class RegisterLocationComponent implements OnInit {
         (data) => {
           this.alertService.success(data['message'], true);
           this.router.navigate(['..']);
-          this.registerStatusChange.emit(false);
         },
         (error) => {
           this.alertService.error(error);

@@ -1,26 +1,18 @@
-<ul class="list-group">
-  <div *ngFor="let location of locations">
-    <li class="list-group-item">
-      <div class="row">
-        <div class="col-md-6">
-          {{ location.name }}
-        </div>
-        <div class="col-md-3">
-          {{ location.name }}
-        </div>
-        <div class="col-md-3">
-          <button mat-raised-button>Click Me</button>
-        </div>
-      </div>
-    </li>
-  </div>
+<h4><label for="search-box">Location Search</label></h4>
+<input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+<ul>
+  <li *ngFor="let location of locations$ | async">
+    <a routerLink="/location/{{ location._id }}">
+      {{ location.city }}
+    </a>
+  </li>
 </ul>
 
-<div *ngIf="selectedLocation">
-  <app-edit-location></app-edit-location>
-</div>
-
-<button class="btn-primary" (click)="registerLocation()">Add location</button>
-<div *ngIf="register">
-  <app-register-location [(registerStatus)]="register"></app-register-location>
+<div class="form-row">
+  <div class="col-md-6" style="margin: 5px">
+    <a mat-raised-button [routerLink]="'/registerLocation'">
+      Create location
+    </a>
+  </div>
 </div>

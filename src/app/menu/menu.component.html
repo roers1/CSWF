@@ -9,17 +9,13 @@
       <a *ngIf="!authService.loggedIn" mat-button [routerLink]="'/login'">
         login
       </a>
-
       <a *ngIf="authService.loggedIn" mat-button [routerLink]="'/account'">
         My Account
       </a>
-
       <a *ngIf="!authService.loggedIn" mat-button [routerLink]="'/register'">
         Create Account
       </a>
-
       <a mat-button [routerLink]="'/contacts'"> appointments </a>
-
       <div style="display: inline" *ngIf="authService.admin">
         <a
           mat-button
@@ -29,10 +25,10 @@
           Admin
         </a>
         <mat-menu #menu="matMenu">
-          <a mat-menu-item>
+          <a [routerLink]="'/location'" mat-menu-item>
             <span>Locations</span>
           </a>
-          <a mat-menu-item>
+          <a [routerLink]="'/employee'" mat-menu-item>
             <span>Employees</span>
           </a>
         </mat-menu>

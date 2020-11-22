@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  first,
+  switchMap,
+} from 'rxjs/operators';
 import { Location } from '../../models/location';
 import { AuthService } from '../services/auth.service';
 import { LocationService } from '../services/location.service';
@@ -12,31 +18,28 @@ import { LocationService } from '../services/location.service';
   styleUrls: ['./location.component.css'],
 })
 export class LocationComponent implements OnInit {
-  register: boolean;
-  locations: Location[];
-  selectedLocation: Location;
+  locations$: Observable<Location[]>;
+  private searchTerms = new Subject<string>();
 
   constructor(
     public authService: AuthService,
     private locationService: LocationService
   ) {}
 
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
+
   ngOnInit(): void {
-    this.register = false;
-    this.locationService
-      .getLocations()
-      .subscribe((data) => (this.locations = data));
-  }
+    this.locations$ = this.searchTerms.pipe(
+      // wait 300ms after each keystroke before considering the term
+      debounceTime(300),
 
-  editLocation(location: Location): void {
-    this.selectedLocation = location;
-  }
+      // ignore new term if same as previous term
+      distinctUntilChanged(),
 
-  deleteLocation(location: Location): void {
-    this.locationService.delete(location).subscribe();
-  }
-
-  registerLocation() {
-    this.register = true;
+      // switch to new search observable each time the term changes
+      switchMap((term: string) => this.locationService.searchLocations(term))
+    );
   }
 }
