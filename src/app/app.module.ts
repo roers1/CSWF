@@ -35,6 +35,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
     MatNativeDateModule,
     MatGridListModule,
     MatDatepickerModule,
+    MatMenuModule,
   ],
   providers: [AuthGuard, AlertService, AuthService, UserService],
   bootstrap: [AppComponent],

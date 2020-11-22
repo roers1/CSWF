@@ -3,7 +3,12 @@
     <h1>Avans forever!</h1>
     <span class="menu-spacer"></span>
     <div>
-      <a mat-button [routerLink]="'/login'"> Login </a>
+      <a *ngIf="authService.loggedIn" mat-button [routerLink]="'/login'">
+        Logout
+      </a>
+      <a *ngIf="!authService.loggedIn" mat-button [routerLink]="'/login'">
+        login
+      </a>
 
       <a *ngIf="authService.loggedIn" mat-button [routerLink]="'/account'">
         My Account
@@ -14,6 +19,24 @@
       </a>
 
       <a mat-button [routerLink]="'/contacts'"> appointments </a>
+
+      <div style="display: inline" *ngIf="authService.admin">
+        <a
+          mat-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          Admin
+        </a>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item>
+            <span>Locations</span>
+          </a>
+          <a mat-menu-item>
+            <span>Employees</span>
+          </a>
+        </mat-menu>
+      </div>
       <a mat-button [routerLink]="'/uitleg'"> App-uitleg </a>
     </div>
   </mat-toolbar-row>

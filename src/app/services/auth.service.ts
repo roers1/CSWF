@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   user: User;
   loggedIn = false;
+  admin = false;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -32,6 +33,7 @@ export class AuthService {
           if (res) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             this.user = res.user;
+            this.admin = this.user.employee;
             localStorage.setItem('jwtToken', res.token);
             this.loggedIn = true;
           }
