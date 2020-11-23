@@ -1,0 +1,7 @@
+.header_button {
+    outline: 0;
+}
+
+.header_button:hover {
+    color: white;
+}

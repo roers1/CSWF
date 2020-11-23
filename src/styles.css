@@ -12,3 +12,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .custom_form {
     width: 100%;
 }
+
+button {
+    outline: 0 !important;
+}

@@ -9,18 +9,20 @@
 
 <div class="list-group">
   <div *ngFor="let location of locations$ | async">
-    <div class="d-flex w-100">
-      <h1 class="col-md-8">{{ location.name }}</h1>
-      <a mat-button class="col-md-2" routerLink="/location/{{ location._id }}">
-        <mat-icon>edit</mat-icon>
-      </a>
-      <button mat-button (click)="deleteLocation(location)" class="col-md-2">
-        <mat-icon>delete</mat-icon>
+
+    <div class="location">
+      <mat-icon style="font-size: 3.2em; width: fit-content; height: fit-content;">location_on</mat-icon>
+      <div style="margin-left: 20px; margin-right: 20px; width: 100%;">
+        <p style="margin-bottom: 2px;">{{location.name}}</p>
+        <p style="color: #7c7c7c;">{{location.streetAddress}}</p>
+      </div>
+      <button mat-icon-button style="transform: scale(1.5);" routerLink="/location/{{ location._id }}">
+        <mat-icon style="color: #e98a1e;">edit</mat-icon>
+      </button>
+      <button mat-icon-button style="transform: scale(1.5);" (click)="deleteLocation(location)">
+        <mat-icon style="color: #e74040;">delete</mat-icon>
       </button>
     </div>
-    <p class="mb-1" style="margin-left: 16px">
-      {{ location.streetAddress }}
-    </p>
 
     <hr />
   </div>
