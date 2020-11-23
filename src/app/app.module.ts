@@ -35,6 +35,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { LocationDetailsComponent } from './location-details/location-details.component';
+import { BeschrijvingComponent } from './beschrijving/beschrijving.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { MatMenuModule } from '@angular/material/menu';
     AlertComponent,
     UitlegComponent,
     MyAccountComponent,
+    LocationDetailsComponent,
+    BeschrijvingComponent,
   ],
   imports: [
     BrowserModule,

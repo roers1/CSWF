@@ -19,30 +19,13 @@ import { LocationService } from '../services/location.service';
 })
 export class LocationComponent implements OnInit {
   locations$: Observable<Location[]>;
-  locations: Location[];
+
   private searchTerms = new Subject<string>();
 
   constructor(
     public authService: AuthService,
     private locationService: LocationService
-  ) {}
-
-  search(term: string): void {
-    this.searchTerms.next(term);
-    //console.log(this.locations$);
-  }
-
-  getLocations(): void {
-    this.locationService
-      .getLocations()
-      .subscribe((locations: any) => (this.locations = locations.locations));
-  }
-
-  iterateLocations(): void {
-    this.locations.forEach((x) => console.log(x));
-  }
-
-  ngOnInit(): void {
+  ) {
     this.locations$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
@@ -53,6 +36,20 @@ export class LocationComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.locationService.searchLocations(term))
     );
-    this.getLocations();
   }
+
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
+
+  deleteLocation(location: Location): void {
+    this.locationService
+      .delete(location, this.authService.user._id)
+      .subscribe();
+  }
+
+  ngAfterViewInit(): void {
+    this.searchTerms.next(' ');
+  }
+  ngOnInit(): void {}
 }

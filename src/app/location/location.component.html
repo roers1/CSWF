@@ -1,4 +1,4 @@
-<h4><label for="search-box">Location Search</label></h4>
+<h4><label for="search-box">Search by city</label></h4>
 <input
   style="margin-bottom: 16px"
   #searchBox
@@ -10,11 +10,11 @@
 <div class="list-group">
   <div *ngFor="let location of locations$ | async">
     <div class="d-flex w-100">
-      <h1 class="col-md-8">{{ location.city }}</h1>
-      <button class="col-md-2">
+      <h1 class="col-md-8">{{ location.name }}</h1>
+      <a mat-button class="col-md-2" routerLink="/location/{{ location._id }}">
         <mat-icon>edit</mat-icon>
-      </button>
-      <button class="col-md-2">
+      </a>
+      <button mat-button (click)="deleteLocation(location)" class="col-md-2">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
