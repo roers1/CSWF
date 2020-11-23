@@ -1,1 +1,155 @@
-<p>beschrijving works!</p>
+<ul class="list-group">
+  <li class="list-group-item">Student: Ruben van Oers</li>
+  <li class="list-group-item">StudentNummer: 2136404</li>
+</ul>
+<hr />
+
+<H1 style="width: 100%">Project beschrijving:</H1>
+<p>Een applicatie voor het inplannen van kappers afspraken.</p>
+<p>
+  Een gebruik registeert zich en komt op een hoofdscherm. Vanuit hier is er een
+  menu met:
+</p>
+
+<ul class="list-group">
+  <li class="list-group-item">Afspraak maken</li>
+  <li class="list-group-item">Mijn afspraken</li>
+  <li class="list-group-item">Account</li>
+  <li class="list-group-item">Logout</li>
+</ul>
+<br />
+<p>
+  Bij het maken van een afspraak kan de gebruiker uit filialen kiezen (entiteit
+  1). Deze filialen bieden tijdsloten (entiteit 2) van x aantal minuten die
+  gekoppeld zijn aan een kapper (ook een geregisteerde gebruiker dus geen
+  entiteit). Tot slot bied ieder filiaal zijn eigen kapsel (entiteit 3) die een
+  gebruiker bij het aanmaken van een afspraak moet selecteren.
+</p>
+<p>
+  Filialen zijn gekoppeld aan de bijbehorende kappers die er werken en deze
+  kunnen CRUD acties op kapsels en afspraken doen.
+</p>
+<p>
+  Een filiaal is aan te maken door een gebruiker die gekenmerkt is als kapper.
+</p>
+
+<H1 style="width: 100%">Use case 1:</H1>
+<p>
+  Als medewerker/admin wil ik kappers vestigingen toevoegen, bewerken en
+  eventueel verwijderen.
+</p>
+<hr />
+
+<H1 style="width: 100%">Use case 2:</H1>
+<p>
+  Als klant wil ik kunnen inloggen en mijn account kunnen wijzigen zodat dat
+  kapper altijd mijn actuele gegevens heeft.
+</p>
+<hr />
+
+<H1 style="width: 100%">Use case 3:</H1>
+<p>
+  Als klant wil ik kappersafspraken kunnen maken zodat ik mijn haren kan laten
+  knippen.
+</p>
+<hr />
+
+<H1 style="width: 100%">Use case 4:</H1>
+<p>
+  Als klant wil ik bij mijn afspraak aan kunnen geven wat voor kapsel ik graag
+  wil hebben zodat ik niet altijd hetzelfde kapsel heb.
+</p>
+
+<H1 style="width: 100%">Entiteiten</H1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#Attribuut</th>
+      <th scope="col">User</th>
+      <th scope="col">Location</th>
+      <th scope="col">Appointment</th>
+      <th scope="col">Timeslot</th>
+      <th scope="col">haircut</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>firstName</td>
+      <td>name</td>
+      <td>owner</td>
+      <td>barber</td>
+      <td>name</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>lastName</td>
+      <td>streetAddress</td>
+      <td>location</td>
+      <td>startTime</td>
+      <td>price</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>streetAddress</td>
+      <td>postalCode</td>
+      <td>startTime</td>
+      <td>endTime</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>postalCode</td>
+      <td>city</td>
+      <td>endTime</td>
+      <td>appointment</td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+      <td>city</td>
+      <td>phoneNumber</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">6</th>
+      <td>dateOfBirth</td>
+      <td>email</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">7</th>
+      <td>phoneNumber</td>
+      <td>createdOn</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">8</th>
+      <td>email</td>
+      <td>employee</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">9</th>
+      <td>password</td>
+      <td>haircuts</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">10</th>
+      <td>employee (Boolean)</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">11</th>
+      <td>appointment</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">12</th>
+      <td>timeslot</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
