@@ -24,8 +24,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LocationDetailsComponent implements OnInit {
   loading = false;
   submitted = false;
-  location: Location;
   updatedLocation: Location;
+  id: string;
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   updateForm = new FormGroup({
@@ -44,23 +44,14 @@ export class LocationDetailsComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public authService: AuthService,
-    private locationService: LocationService,
+    public locationService: LocationService,
     private router: Router,
     private userService: UserService,
     private alertService: AlertService,
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-    this.getLocation();
-  }
-
-  getLocation(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.locationService
-      .getLocation(id)
-      .subscribe((data: any) => (this.location = data));
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     // stop here if form is invalid
@@ -70,7 +61,7 @@ export class LocationDetailsComponent implements OnInit {
 
     this.loading = true;
     this.updatedLocation = this.updateForm.value;
-    this.updatedLocation._id = this.location._id;
+    this.updatedLocation._id = this.locationService.location._id;
     this.locationService
       .update(this.updatedLocation, this.authService.user)
       .pipe(first())

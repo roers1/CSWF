@@ -9,18 +9,28 @@
 
 <div class="list-group">
   <div *ngFor="let location of locations$ | async">
-
     <div class="location">
-      <mat-icon style="font-size: 3.2em; width: fit-content; height: fit-content;">location_on</mat-icon>
-      <div style="margin-left: 20px; margin-right: 20px; width: 100%;">
-        <p style="margin-bottom: 2px;">{{location.name}}</p>
-        <p style="color: #7c7c7c;">{{location.streetAddress}}</p>
+      <mat-icon
+        style="font-size: 3.2em; width: fit-content; height: fit-content"
+        >location_on</mat-icon
+      >
+      <div style="margin-left: 20px; margin-right: 20px; width: 100%">
+        <p style="margin-bottom: 2px">{{ location.name }}</p>
+        <p style="color: #7c7c7c">{{ location.streetAddress }}</p>
       </div>
-      <button mat-icon-button style="transform: scale(1.5);" routerLink="/location/{{ location._id }}">
-        <mat-icon style="color: #e98a1e;">edit</mat-icon>
+      <button
+        mat-icon-button
+        style="transform: scale(1.5)"
+        routerLink="/location/{{ location._id }}"
+      >
+        <mat-icon style="color: #e98a1e">edit</mat-icon>
       </button>
-      <button mat-icon-button style="transform: scale(1.5);" (click)="deleteLocation(location)">
-        <mat-icon style="color: #e74040;">delete</mat-icon>
+      <button
+        mat-icon-button
+        style="transform: scale(1.5)"
+        (click)="deleteLocation(location)"
+      >
+        <mat-icon style="color: #e74040">delete</mat-icon>
       </button>
     </div>
 

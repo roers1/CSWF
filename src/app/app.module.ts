@@ -26,7 +26,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { UitlegComponent } from './uitleg/uitleg.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
@@ -37,6 +36,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { LocationDetailsComponent } from './location-details/location-details.component';
 import { BeschrijvingComponent } from './beschrijving/beschrijving.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { LocationMenuComponent } from './location-menu/location-menu.component';
 
 @NgModule({
   declarations: [
@@ -49,10 +50,11 @@ import { BeschrijvingComponent } from './beschrijving/beschrijving.component';
     RegisterComponent,
     RegisterLocationComponent,
     AlertComponent,
-    UitlegComponent,
     MyAccountComponent,
     LocationDetailsComponent,
     BeschrijvingComponent,
+    EmployeeListComponent,
+    LocationMenuComponent,
   ],
   imports: [
     BrowserModule,

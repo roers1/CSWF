@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <h1>Avans forever!</h1>
     <span class="menu-spacer"></span>
-    <div style="display: flex;">
+    <div style="display: flex">
       <div *ngIf="!authService.loggedIn">
         <button mat-button [routerLink]="'/login'" class="header_button">
           login
@@ -19,14 +19,20 @@
           My Account
         </button>
       </div>
-      <button mat-button [routerLink]="'/contacts'" class="header_button"> appointments </button>
+      <button mat-button [routerLink]="'/contacts'" class="header_button">
+        appointments
+      </button>
       <div style="display: inline" *ngIf="authService.admin">
-        <button mat-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
-          class="header_button">
+        <button
+          mat-button
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+          class="header_button"
+        >
           Admin
         </button>
         <mat-menu #menu="matMenu">
-          <button [routerLink]="'/location'" mat-menu-item>
+          <button [routerLink]="'/locations'" mat-menu-item>
             <span>Locations</span>
           </button>
           <button [routerLink]="'/employee'" mat-menu-item>
@@ -34,7 +40,9 @@
           </button>
         </mat-menu>
       </div>
-      <button mat-button [routerLink]="'/beschrijving'" class="header_button"> App-uitleg </button>
+      <button mat-button [routerLink]="'/beschrijving'" class="header_button">
+        App-uitleg
+      </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
