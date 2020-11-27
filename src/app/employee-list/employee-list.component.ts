@@ -53,20 +53,3 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 }
-
-@Component({
-  selector: 'employeeList',
-  templateUrl: 'employeeList.html',
-})
-export class EmployeeListDialog {
-  constructor(
-    public dialogRef: MatDialogRef<EmployeeListDialog>,
-    @Inject(MAT_DIALOG_DATA) public employees: User[]
-  ) {
-    console.log(employees);
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-}
