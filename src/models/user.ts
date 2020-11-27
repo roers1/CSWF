@@ -1,4 +1,5 @@
-﻿﻿export class User {
+﻿﻿import { Location } from './location';
+export class User {
   constructor(
     public _id: string,
     public firstName: string,
@@ -10,6 +11,7 @@
     public phoneNumber: number,
     public email: string,
     public password: string,
-    public employee: boolean
+    public employee: boolean,
+    public location: Location
   ) {}
 }

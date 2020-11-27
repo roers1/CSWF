@@ -4,7 +4,7 @@
   failliet
 </div>
 <div class="list-group">
-  <div *ngFor="let employee of locationService.location.employee | async">
+  <div *ngFor="let employee of locationService.location.employee">
     <div class="location">
       <mat-icon
         style="font-size: 3.2em; width: fit-content; height: fit-content"
@@ -27,6 +27,6 @@
 
 <div class="form-row">
   <div class="col-md-6" style="margin: 5px">
-    <button mat-raised-button [routerLink]="'/login'">Add employee</button>
+    <button mat-raised-button (click)="openDialog()">Add employee</button>
   </div>
 </div>

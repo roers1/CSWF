@@ -38,6 +38,7 @@ import { LocationDetailsComponent } from './location-details/location-details.co
 import { BeschrijvingComponent } from './beschrijving/beschrijving.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { LocationMenuComponent } from './location-menu/location-menu.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { LocationMenuComponent } from './location-menu/location-menu.component';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
+    MatDialogModule,
     MatIconModule,
     NgbModule,
     MatRadioModule,

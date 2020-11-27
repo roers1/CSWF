@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../services/alert.service';
@@ -7,13 +7,20 @@ import { LocationService } from '../services/location.service';
 import { UserService } from '../services/user.service';
 import { Location } from '../../models/location';
 import { User } from '../../models/user';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
-  employee: User[];
+  employees: User[];
 
   constructor(
     public route: ActivatedRoute,
@@ -22,8 +29,44 @@ export class EmployeeListComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private alertService: AlertService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public employeeDialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.getFreeEmployees();
+  }
+
+  getFreeEmployees(): void {
+    this.userService
+      .getFreeEmployees()
+      .subscribe((employees) => (this.employees = employees));
+  }
+
+  openDialog(): void {
+    const dialogRef = this.employeeDialog.open(EmployeeListDialog, {
+      width: '250px',
+      data: this.employees,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+    });
+  }
+}
+
+@Component({
+  selector: 'employeeList',
+  templateUrl: 'employeeList.html',
+})
+export class EmployeeListDialog {
+  constructor(
+    public dialogRef: MatDialogRef<EmployeeListDialog>,
+    @Inject(MAT_DIALOG_DATA) public employees: User[]
+  ) {
+    console.log(employees);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }
