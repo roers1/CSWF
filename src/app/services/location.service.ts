@@ -40,6 +40,22 @@ export class LocationService {
     return this.http.get<Location[]>(`${environment.API}location`);
   }
 
+  addUser(locationid: string, userid: string) {
+    let httpOptionsUpdate = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        jwtToken: localStorage.getItem('jwtToken'),
+        userid: userid,
+        locationid: locationid,
+      }),
+    };
+
+    console.log(`${environment.API}location/employee`);
+    return this.http
+      .put(`${environment.API}location/employee`, {}, httpOptionsUpdate)
+      .pipe(catchError(this.handleError<string>('getLocation', userid)));
+  }
+
   update(location: Location, user: User) {
     let httpOptionsUpdate = {
       headers: new HttpHeaders({
@@ -49,6 +65,7 @@ export class LocationService {
       }),
     };
     console.log(location);
+
     return this.http.put(
       `${environment.API}location`,
       { location },

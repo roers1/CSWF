@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Add employee</h1>
+<div mat-dialog-content>
+  <p>Which employee would you like to add</p>
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Add employee" [(ngModel)]="selectedUser">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let employee of employees.users" [value]="employee">
+        {{ employee.firstName }} {{ employee.lastName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button [mat-dialog-close]="selectedUser">Add</button>
+</div>

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Timeslot } from 'src/models/timeslot';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +41,21 @@ export class UserService {
       }),
     };
     return this.http.put(`${environment.API}user`, { user }, httpOptionsUpdate);
+  }
+
+  addTimeSlot(timeslot: Timeslot, user) {
+    let httpOptionsUpdate = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        jwtToken: localStorage.getItem('jwtToken'),
+        userid: user._id,
+      }),
+    };
+    return this.http.post(
+      `${environment.API}timeslot`,
+      { timeslot },
+      httpOptionsUpdate
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

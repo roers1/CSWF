@@ -1,0 +1,85 @@
+<div *ngIf="this.user.timeslot.length > 0">
+  <div *ngFor="let slot of this.user.timeslot">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <div class="col">
+          <p>{{ slot.startTime }}</p>
+        </div>
+        <div class="col">
+          <p>{{ slot.endTime }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="registerForm" (ngSubmit)="addTimeSlot()">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Timeslot day</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="date"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="col">
+        <P>Start time</P>
+      </div>
+      <div class="col">
+        <input
+          formControlName="startTimeHour"
+          matInput
+          type="number"
+          [errorStateMatcher]="matcher"
+          class="form-control"
+          placeholder="Hour (1-24)"
+        />
+      </div>
+      <div class="col">
+        <input
+          formControlName="startTimeMinute"
+          matInput
+          type="number"
+          class="form-control"
+          placeholder="Minutes (1-60)"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <P>End time</P>
+      </div>
+      <div class="col">
+        <input
+          formControlName="endTimeHour"
+          matInput
+          type="number"
+          class="form-control"
+          placeholder="Hour (1-24)"
+        />
+      </div>
+      <div class="col">
+        <input
+          formControlName="endTimeMinute"
+          matInput
+          type="number"
+          class="form-control"
+          placeholder="Minutes (1-60)"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <button class="col-md-8" mat-raised-button type="submit">Add slot</button>
+    <button class="col" mat-raised-button (click)="onNoClick()">Close</button>
+  </div>
+</form>

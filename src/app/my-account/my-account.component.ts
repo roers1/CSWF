@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -13,6 +14,7 @@ import { MyErrorStateMatcher } from '../login/login.component';
 import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import { TimeslotDialogComponent } from '../timeslot-dialog/timeslot-dialog.component';
 
 @Component({
   selector: 'app-my-account',
@@ -44,7 +46,8 @@ export class MyAccountComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService,
     public authService: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public timeslotDialog: MatDialog
   ) {}
 
   ngOnInit() {}
@@ -68,5 +71,13 @@ export class MyAccountComponent implements OnInit {
           });
         }
       );
+  }
+
+  openDialog(): void {
+    const dialogRef = this.timeslotDialog.open(TimeslotDialogComponent, {
+      width: '35%',
+      data: this.authService.user,
+    });
+    dialogRef.beforeClosed().subscribe(() => {});
   }
 }

@@ -17,7 +17,6 @@ import { AuthGuard } from 'src/AuthGuards/auth.guard';
 import { AlertService } from './services/alert.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,6 +38,9 @@ import { BeschrijvingComponent } from './beschrijving/beschrijving.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { LocationMenuComponent } from './location-menu/location-menu.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EmployeeListDialogComponent } from './employee-list-dialog/employee-list-dialog.component';
+import { AccountMenuComponent } from './account-menu/account-menu.component';
+import { TimeslotDialogComponent } from './timeslot-dialog/timeslot-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     BeschrijvingComponent,
     EmployeeListComponent,
     LocationMenuComponent,
+    EmployeeListDialogComponent,
+    AccountMenuComponent,
+    TimeslotDialogComponent,
   ],
   imports: [
     BrowserModule,

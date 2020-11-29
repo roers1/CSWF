@@ -13,6 +13,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { EmployeeListDialogComponent } from '../employee-list-dialog/employee-list-dialog.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -44,12 +45,36 @@ export class EmployeeListComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.employeeDialog.open(EmployeeListDialog, {
+    const dialogRef = this.employeeDialog.open(EmployeeListDialogComponent, {
       width: '250px',
       data: this.employees,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+    dialogRef.beforeClosed().subscribe((employee) => {
+      console.log('employee');
+      this.locationService
+        .addUser(this.locationService.location._id, employee._id)
+        .subscribe(() => {
+          this.locationService
+            .getLocation(this.locationService.location._id)
+            .subscribe(
+              (data: any) => {
+                this.locationService.location = data;
+                this._snackBar.open(data['message'], 'Ok', {
+                  duration: 2000,
+                });
+              },
+              (error) => {
+                console.log(error);
+                this._snackBar.open(
+                  error.error.message || error.message,
+                  'Ok,',
+                  {
+                    duration: 3000,
+                  }
+                );
+              }
+            );
+        });
     });
   }
 }
