@@ -10,6 +10,9 @@
             type="firstName"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="registerForm.controls['firstName'].errors?.required"
+            >Firstname is required
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="form-group col-md-6">
@@ -21,6 +24,9 @@
             type="lastName"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="registerForm.controls['lastName'].errors?.required"
+            >Lastname is required
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -35,6 +41,10 @@
             type="string"
             [errorStateMatcher]="matcher"
           />
+          <mat-error
+            *ngIf="registerForm.controls['streetAddress'].errors?.required"
+            >Address is required
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -49,6 +59,12 @@
             type="string"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="registerForm.controls['email'].errors?.required"
+            >Mail is required
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].errors?.pattern"
+            >Invalid e-mail format
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -63,6 +79,14 @@
             type="string"
             [errorStateMatcher]="matcher"
           />
+          <mat-error
+            *ngIf="registerForm.controls['phoneNumber'].errors?.required"
+            >Phonenumber is required
+          </mat-error>
+          <mat-error
+            *ngIf="registerForm.controls['phoneNumber'].errors?.pattern"
+            >Invalid phonenumber format
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -77,6 +101,13 @@
             type="postalCode"
             [errorStateMatcher]="matcher"
           />
+          <mat-error
+            *ngIf="registerForm.controls['postalCode'].errors?.required"
+            >Postal code is required
+          </mat-error>
+          <mat-error *ngIf="registerForm.controls['postalCode'].errors?.pattern"
+            >Invalid postal code format
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="form-group col-md-6">
@@ -89,6 +120,9 @@
             type="city"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="registerForm.controls['city'].errors?.required"
+            >City is required
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -107,10 +141,13 @@
             <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="registerForm.controls['dateOfBirth'].errors?.required"
+            >Date of birth is required
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
-
     <div class="form-row">
       <div class="form-group col-md-12">
         <mat-form-field appearance="fill" class="width-100">
@@ -122,12 +159,24 @@
             type="password"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="registerForm.controls['password'].errors?.pattern"
+            >Password needs eight characters, at least one letter, at least one
+            capitalised letter and one number
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-6" style="margin: 5px">
-        <button mat-raised-button type="submit">Register</button>
+        <button
+          mat-raised-button
+          style="width: 100%"
+          color="primary"
+          [disabled]="!registerForm.valid"
+          type="submit"
+        >
+          Register
+        </button>
       </div>
     </div>
     <div class="form-row">

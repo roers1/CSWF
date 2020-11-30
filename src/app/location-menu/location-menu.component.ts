@@ -6,7 +6,6 @@ import { AuthService } from '../services/auth.service';
 import { LocationService } from '../services/location.service';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
-import { MyErrorStateMatcher } from '../login/login.component';
 import { Location } from '../../models/location';
 
 @Component({

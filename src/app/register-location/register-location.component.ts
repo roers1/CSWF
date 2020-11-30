@@ -5,9 +5,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { MyErrorStateMatcher } from '../login/login.component';
+import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
 import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
 import { LocationService } from '../services/location.service';
@@ -23,13 +24,21 @@ export class RegisterLocationComponent implements OnInit {
   submitted = false;
 
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  PHONENUMBER_REGEX = /(^(316|06|6)([0-9]{8}))$/;
+  POSTAL_CODE_REGEX = /(^[1-9][0-9]{3})([\s]?)((?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2})$/;
 
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     streetAddress: new FormControl('', [Validators.required]),
-    postalCode: new FormControl('', [Validators.required]),
+    postalCode: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.POSTAL_CODE_REGEX),
+    ]),
     city: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.PHONENUMBER_REGEX),
+    ]),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern(this.EMAIL_REGEX),
@@ -44,7 +53,8 @@ export class RegisterLocationComponent implements OnInit {
     private locationService: LocationService,
     private router: Router,
     private userService: UserService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
@@ -61,12 +71,15 @@ export class RegisterLocationComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success(data['message'], true);
+          this._snackBar.open(data['message'], 'Ok', {
+            duration: 2000,
+          });
           this.router.navigate(['/location']);
         },
         (error) => {
-          this.alertService.error(error);
-          this.loading = false;
+          this._snackBar.open(error.error.message, 'Ok,', {
+            duration: 3000,
+          });
         }
       );
   }

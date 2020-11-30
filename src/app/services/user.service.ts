@@ -25,11 +25,9 @@ export class UserService {
   }
 
   register(user: User) {
-    return this.http.post(
-      `${environment.API}user/register`,
-      user,
-      this.httpOptions
-    );
+    return this.http
+      .post(`${environment.API}user/register`, user, this.httpOptions)
+      .pipe(catchError(this.handleError<User>('registerUser')));
   }
 
   put(user: User) {
@@ -40,7 +38,9 @@ export class UserService {
         id: user._id,
       }),
     };
-    return this.http.put(`${environment.API}user`, { user }, httpOptionsUpdate);
+    return this.http
+      .put(`${environment.API}user`, { user }, httpOptionsUpdate)
+      .pipe(catchError(this.handleError<User>('registerUser')));
   }
 
   addTimeSlot(timeslot: Timeslot, user) {
@@ -51,22 +51,17 @@ export class UserService {
         userid: user._id,
       }),
     };
-    return this.http.post(
-      `${environment.API}timeslot`,
-      { timeslot },
-      httpOptionsUpdate
-    );
+    return this.http
+      .post(`${environment.API}timeslot`, { timeslot }, httpOptionsUpdate)
+      .pipe(catchError(this.handleError<Timeslot>('registerUser')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

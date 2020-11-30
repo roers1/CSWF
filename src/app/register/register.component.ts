@@ -11,8 +11,8 @@ import { UserService } from '../services/user.service';
 import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MyErrorStateMatcher } from '../login/login.component';
 import { User } from 'src/models/user';
+import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
 
 @Component({
   selector: 'app-register',
@@ -21,16 +21,24 @@ import { User } from 'src/models/user';
 })
 export class RegisterComponent implements OnInit {
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  PASSWORD_REGEX = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/;
+  POSTAL_CODE_REGEX = /(^[1-9][0-9]{3})([\s]?)((?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2})$/;
+  PHONENUMBER_REGEX = /(^(316|06|6)([0-9]{8}))$/;
 
   registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     streetAddress: new FormControl('', [Validators.required]),
-    postalCode: new FormControl('', [Validators.required]),
+    postalCode: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.POSTAL_CODE_REGEX),
+    ]),
     city: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.PHONENUMBER_REGEX),
+    ]),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern(this.EMAIL_REGEX),

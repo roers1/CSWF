@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { User } from '../../models/user';
 import { environment } from 'src/environments/environment';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -29,9 +30,7 @@ export class AuthService {
       )
       .pipe(
         map((res) => {
-          // login successful if there's a jwt token in the response
           if (res) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
             this.user = res.user;
             console.log(this.user);
             this.admin = this.user.employee;
@@ -40,10 +39,19 @@ export class AuthService {
           }
 
           return res;
-        })
+        }),
+        catchError(this.handleError<string>('login', email))
       );
   }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error); // log to console instead
 
+      console.log(`${operation} failed: ${error.message}`);
+
+      return of(result as T);
+    };
+  }
   logout() {
     // remove user from local storage to log user out
     this.loggedIn = false;

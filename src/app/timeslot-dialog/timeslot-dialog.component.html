@@ -1,13 +1,11 @@
 <div *ngIf="this.user.timeslot.length > 0">
   <div *ngFor="let slot of this.user.timeslot">
     <div class="row">
-      <div class="form-group col-md-6">
-        <div class="col">
-          <p>{{ slot.startTime }}</p>
-        </div>
-        <div class="col">
-          <p>{{ slot.endTime }}</p>
-        </div>
+      <div style="display: inline-block; margin: 10px">
+        <p>{{ slot.startTime }}</p>
+      </div>
+      <div style="display: inline-block; margin: 10px">
+        <p>{{ slot.endTime }}</p>
       </div>
     </div>
   </div>
@@ -28,58 +26,99 @@
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="registerForm.controls['date'].errors?.required"
+          >Date is required
+        </mat-error>
       </mat-form-field>
     </div>
-    <div class="row">
-      <div class="col">
-        <P>Start time</P>
-      </div>
-      <div class="col">
-        <input
-          formControlName="startTimeHour"
-          matInput
-          type="number"
-          [errorStateMatcher]="matcher"
-          class="form-control"
-          placeholder="Hour (1-24)"
-        />
-      </div>
-      <div class="col">
-        <input
-          formControlName="startTimeMinute"
-          matInput
-          type="number"
-          class="form-control"
-          placeholder="Minutes (1-60)"
-        />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <P>End time</P>
-      </div>
-      <div class="col">
-        <input
-          formControlName="endTimeHour"
-          matInput
-          type="number"
-          class="form-control"
-          placeholder="Hour (1-24)"
-        />
-      </div>
-      <div class="col">
-        <input
-          formControlName="endTimeMinute"
-          matInput
-          type="number"
-          class="form-control"
-          placeholder="Minutes (1-60)"
-        />
-      </div>
-    </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <P>Start time</P>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        placeholder="Hour (1-24)"
+        formControlName="startTimeHour"
+        type="number"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="registerForm.controls['startTimeHour'].errors?.required"
+        >Start hour is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.controls['startTimeHour'].errors?.pattern"
+        >Hour has to be within 1-24
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        placeholder="Minute (0-59)"
+        formControlName="startTimeMinute"
+        type="number"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error
+        *ngIf="registerForm.controls['startTimeMinute'].errors?.required"
+        >Start minute is required
+      </mat-error>
+      <mat-error
+        *ngIf="registerForm.controls['startTimeMinute'].errors?.pattern"
+        >Minute has to be within 0-59
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <div class="col">
+      <P>End time</P>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        placeholder="Hour (1-24)"
+        formControlName="endTimeHour"
+        type="number"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="registerForm.controls['endTimeHour'].errors?.required"
+        >Start hour is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.controls['endTimeHour'].errors?.pattern"
+        >Hour has to be within 1-24
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        placeholder="Minute (0-59)"
+        formControlName="endTimeMinute"
+        type="number"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="registerForm.controls['endTimeMinute'].errors?.required"
+        >Start minute is required
+      </mat-error>
+      <mat-error *ngIf="registerForm.controls['endTimeMinute'].errors?.pattern"
+        >Minute has to be within 0-59
+      </mat-error>
+    </mat-form-field>
+  </div>
+
   <div class="form-row">
-    <button class="col-md-8" mat-raised-button type="submit">Add slot</button>
-    <button class="col" mat-raised-button (click)="onNoClick()">Close</button>
+    <button
+      mat-raised-button
+      style="width: 100%"
+      color="primary"
+      [disabled]="!registerForm.valid"
+      type="submit"
+    >
+      Add slot
+    </button>
   </div>
 </form>
+<button class="col" mat-raised-button (click)="onNoClick()">Close</button>

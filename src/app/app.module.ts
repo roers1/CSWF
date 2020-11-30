@@ -26,7 +26,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatNativeDateModule } from '@angular/material/core';
+import {
+  ErrorStateMatcher,
+  MatNativeDateModule,
+  ShowOnDirtyErrorStateMatcher,
+} from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -89,6 +93,7 @@ import { TimeslotDialogComponent } from './timeslot-dialog/timeslot-dialog.compo
     MatMenuModule,
   ],
   providers: [AuthGuard, AlertService, AuthService, UserService],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

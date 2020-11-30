@@ -1,6 +1,5 @@
-<div class="center" style="padding-top: 100px;">
-
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="width: 40%;">
+<div class="center" style="padding-top: 100px">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="width: 40%">
     <h2 class="title">Log in</h2>
 
     <!-- <h5 class="error-text" [hidden]="errorBool">Wachtwoord en/of gebruikersnaam klopt niet!</h5> -->
@@ -8,27 +7,50 @@
 
     <div mat-dialog-content>
       <mat-form-field class="custom_form" appearance="fill">
-        <input matInput placeholder="Email" type="email" formControlName="email"
-          [errorStateMatcher]="matcher">
-        <mat-error *ngIf="loginForm.controls['email'].errors?.required;" innerHTML="Mail verplicht">
+        <input
+          matInput
+          placeholder="Email"
+          type="email"
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="loginForm.controls['email'].errors?.required"
+          >Mail is required
         </mat-error>
-        <mat-error *ngIf="loginForm.controls['email'].errors?.pattern;" innerHTML="Mail ongeldig">
+        <mat-error *ngIf="loginForm.controls['email'].errors?.pattern"
+          >Invalid e-mail format
         </mat-error>
+        <mat-error *ngIf="loginForm.controls['email'].errors?.maxlength"
+          >E-mail is rediculous long</mat-error
+        >
       </mat-form-field>
     </div>
 
     <div mat-dialog-content>
       <mat-form-field class="custom_form" appearance="fill">
-        <input matInput placeholder="Wachtwoord" formControlName="password" type="password" [errorStateMatcher]="matcher">
-        <mat-error *ngIf="loginForm.controls['password'].errors?.required;" innerHTML="Wachtwoord verplicht">
-        </mat-error>
-        <mat-error *ngIf="loginForm.controls['password'].errors?.pattern;" innerHTML="Wachtwoord ongeldig">
+        <input
+          matInput
+          placeholder="Wachtwoord"
+          formControlName="password"
+          type="password"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="loginForm.controls['password'].errors?.required"
+          >Password is required
         </mat-error>
       </mat-form-field>
     </div>
 
     <div>
-      <button style="width: 100%;" mat-raised-button color="primary" [disabled]="!loginForm.valid" type="submit">Login</button>
+      <button
+        style="width: 100%"
+        mat-raised-button
+        color="primary"
+        [disabled]="!loginForm.valid"
+        type="submit"
+      >
+        Login
+      </button>
     </div>
   </form>
 </div>

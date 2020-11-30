@@ -11,6 +11,9 @@
             type="text"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="updateForm.controls['name'].errors?.required"
+            >Location name is required
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -26,6 +29,10 @@
             type="text"
             [errorStateMatcher]="matcher"
           />
+          <mat-error
+            *ngIf="updateForm.controls['streetAddress'].errors?.required"
+            >Address is required
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -41,6 +48,12 @@
             type="text"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="updateForm.controls['email'].errors?.required"
+            >Mail is required
+          </mat-error>
+          <mat-error *ngIf="updateForm.controls['email'].errors?.pattern"
+            >Invalid e-mail format
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -56,6 +69,12 @@
             type="text"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="updateForm.controls['phoneNumber'].errors?.required"
+            >Phonenumber is required
+          </mat-error>
+          <mat-error *ngIf="updateForm.controls['phoneNumber'].errors?.pattern"
+            >Invalid phonenumber format
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -71,6 +90,12 @@
             type="text"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="updateForm.controls['postalCode'].errors?.required"
+            >Postal code is required
+          </mat-error>
+          <mat-error *ngIf="updateForm.controls['postalCode'].errors?.pattern"
+            >Invalid postal code format
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="form-group col-md-6">
@@ -84,12 +109,23 @@
             type="text"
             [errorStateMatcher]="matcher"
           />
+          <mat-error *ngIf="updateForm.controls['city'].errors?.required"
+            >City is required
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="form-row">
       <div class="col-md-6" style="margin: 5px">
-        <button mat-raised-button type="submit">Update location</button>
+        <button
+          mat-raised-button
+          style="width: 100%"
+          color="primary"
+          [disabled]="!updateForm.valid"
+          type="submit"
+        >
+          Update location
+        </button>
       </div>
     </div>
   </form>

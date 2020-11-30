@@ -11,22 +11,8 @@ import {
 import { first } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
+import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
 
 @Component({
   selector: 'app-login',
@@ -34,8 +20,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.EMAIL_REGEX),
+      Validators.maxLength(80),
+    ]),
     password: new FormControl('', [Validators.required]),
   });
 

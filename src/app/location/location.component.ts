@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import {
@@ -24,7 +25,8 @@ export class LocationComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private _snackBar: MatSnackBar
   ) {
     this.locations$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
@@ -46,6 +48,10 @@ export class LocationComponent implements OnInit {
     this.locationService
       .delete(location, this.authService.user._id)
       .subscribe();
+    this._snackBar.open(location.name + ' removed!', 'Ok', {
+      duration: 2000,
+    });
+    this.search('');
   }
 
   ngAfterViewInit(): void {

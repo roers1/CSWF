@@ -29,15 +29,15 @@ export class LocationService {
         id: adminId,
       }),
     };
-    return this.http.post(
-      `${environment.API}location`,
-      location,
-      httpOptionsPost
-    );
+    return this.http
+      .post(`${environment.API}location`, location, httpOptionsPost)
+      .pipe(catchError(this.handleError<Location>('registerLocation')));
   }
 
   getLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>(`${environment.API}location`);
+    return this.http
+      .get<Location[]>(`${environment.API}location`)
+      .pipe(catchError(this.handleError<Location[]>('getLocations', [])));
   }
 
   addUser(locationid: string, userid: string) {
@@ -66,11 +66,9 @@ export class LocationService {
     };
     console.log(location);
 
-    return this.http.put(
-      `${environment.API}location`,
-      { location },
-      httpOptionsUpdate
-    );
+    return this.http
+      .put(`${environment.API}location`, { location }, httpOptionsUpdate)
+      .pipe(catchError(this.handleError<Location>('updateLocation', location)));
   }
 
   delete(location: Location, adminId: string): Observable<Location> {
@@ -108,13 +106,10 @@ export class LocationService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

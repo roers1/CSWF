@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from 'src/models/user';
-import { MyErrorStateMatcher } from '../login/login.component';
+import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
 import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
@@ -23,21 +23,31 @@ import { TimeslotDialogComponent } from '../timeslot-dialog/timeslot-dialog.comp
 })
 export class MyAccountComponent implements OnInit {
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  POSTAL_CODE_REGEX = /(^[1-9][0-9]{3})([\s]?)((?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2})$/;
+  PHONENUMBER_REGEX = /(^(316|06|6)([0-9]{8}))$/;
+
   updatedUser: User;
+
   registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     streetAddress: new FormControl('', [Validators.required]),
-    postalCode: new FormControl('', [Validators.required]),
+    postalCode: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.POSTAL_CODE_REGEX),
+    ]),
     city: new FormControl('', [Validators.required]),
     dateOfBirth: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.PHONENUMBER_REGEX),
+    ]),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern(this.EMAIL_REGEX),
     ]),
   });
+
   hide = false;
   matcher = new MyErrorStateMatcher();
   constructor(
@@ -75,7 +85,7 @@ export class MyAccountComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.timeslotDialog.open(TimeslotDialogComponent, {
-      width: '35%',
+      width: '800px',
       data: this.authService.user,
     });
     dialogRef.beforeClosed().subscribe(() => {});

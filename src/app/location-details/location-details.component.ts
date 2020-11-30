@@ -7,7 +7,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { MyErrorStateMatcher } from '../login/login.component';
 import { AlertService } from '../services/alert.service';
 import { AuthService } from '../services/auth.service';
 import { LocationService } from '../services/location.service';
@@ -15,6 +14,7 @@ import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '../../models/location';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
 
 @Component({
   selector: 'app-location-details',
@@ -27,13 +27,21 @@ export class LocationDetailsComponent implements OnInit {
   updatedLocation: Location;
   id: string;
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  PHONENUMBER_REGEX = /(^(316|06|6)([0-9]{8}))$/;
+  POSTAL_CODE_REGEX = /(^[1-9][0-9]{3})([\s]?)((?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2})$/;
 
   updateForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     streetAddress: new FormControl('', [Validators.required]),
-    postalCode: new FormControl('', [Validators.required]),
+    postalCode: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.POSTAL_CODE_REGEX),
+    ]),
     city: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [
+      Validators.required,
+      Validators.pattern(this.PHONENUMBER_REGEX),
+    ]),
     email: new FormControl('', [
       Validators.required,
       Validators.pattern(this.EMAIL_REGEX),
