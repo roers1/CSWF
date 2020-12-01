@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertService } from '../services/alert.service';
-import { AuthService } from '../services/auth.service';
-import { LocationService } from '../services/location.service';
-import { UserService } from '../services/user.service';
-import { first } from 'rxjs/operators';
+import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { LocationService } from 'src/app/services/location.service';
+import { UserService } from 'src/app/services/user.service';
+
 import { Location } from '../../models/location';
 
 @Component({

@@ -9,11 +9,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { User } from 'src/models/user';
-import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
-import { AlertService } from '../services/alert.service';
-import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
+import { MyErrorStateMatcher } from 'src/app/ErrorStateMatcher/ErrorStateMatcher';
+import { User } from 'src/app/models/user';
+import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 import { TimeslotDialogComponent } from '../timeslot-dialog/timeslot-dialog.component';
 
 @Component({

@@ -7,12 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { UserService } from '../services/user.service';
-import { AlertService } from '../services/alert.service';
-import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { User } from 'src/models/user';
-import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
+import { MyErrorStateMatcher } from 'src/app/ErrorStateMatcher/ErrorStateMatcher';
+import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',

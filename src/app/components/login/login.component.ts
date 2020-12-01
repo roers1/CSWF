@@ -9,10 +9,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
-import { AlertService } from '../services/alert.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
+import { MyErrorStateMatcher } from 'src/app/ErrorStateMatcher/ErrorStateMatcher';
+import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',

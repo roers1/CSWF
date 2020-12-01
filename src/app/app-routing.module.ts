@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/AuthGuards/auth.guard';
-import { HomeComponent } from './home/home.component';
-import { LocationComponent } from './location/location.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { MyAccountComponent } from './my-account/my-account.component';
-import { RegisterLocationComponent } from './register-location/register-location.component';
-import { LocationDetailsComponent } from './location-details/location-details.component';
-import { BeschrijvingComponent } from './beschrijving/beschrijving.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { LocationMenuComponent } from './location-menu/location-menu.component';
-import { Location } from '../models/location';
+import { BeschrijvingComponent } from './components/beschrijving/beschrijving.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { LocationDetailsComponent } from './components/location-details/location-details.component';
+import { LocationMenuComponent } from './components/location-menu/location-menu.component';
+import { LocationComponent } from './components/location/location.component';
+import { LoginComponent } from './components/login/login.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
+import { RegisterLocationComponent } from './components/register-location/register-location.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

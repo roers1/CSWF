@@ -10,8 +10,8 @@ import {
   switchMap,
 } from 'rxjs/operators';
 import { Location } from '../../models/location';
-import { AuthService } from '../services/auth.service';
-import { LocationService } from '../services/location.service';
+import { AuthService } from '../../services/auth.service';
+import { LocationService } from '../../services/location.service';
 
 @Component({
   selector: 'app-location',

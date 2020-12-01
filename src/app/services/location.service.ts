@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Location } from '../../models/location';
+import { Location } from '../models/location';
 import * as _ from 'lodash';
-import { User } from 'src/models/user';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

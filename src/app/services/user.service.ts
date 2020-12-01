@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../../models/user';
+
 import { Environment } from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Timeslot } from 'src/models/timeslot';
+import { Timeslot } from '../models/timeslot';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',

@@ -1,12 +1,11 @@
 import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertService } from '../services/alert.service';
-import { AuthService } from '../services/auth.service';
-import { LocationService } from '../services/location.service';
-import { UserService } from '../services/user.service';
+import { AlertService } from '../../services/alert.service';
+import { AuthService } from '../../services/auth.service';
+import { LocationService } from '../../services/location.service';
+import { UserService } from '../../services/user.service';
 import { Location } from '../../models/location';
-import { User } from '../../models/user';
 import {
   MatDialog,
   MatDialogRef,
@@ -14,6 +13,7 @@ import {
 } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { EmployeeListDialogComponent } from '../employee-list-dialog/employee-list-dialog.component';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-employee-list',

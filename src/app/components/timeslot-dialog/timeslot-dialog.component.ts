@@ -3,12 +3,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { first } from 'rxjs/operators';
-import { Timeslot } from 'src/models/timeslot';
-import { User } from 'src/models/user';
+import { MyErrorStateMatcher } from 'src/app/ErrorStateMatcher/ErrorStateMatcher';
+import { Timeslot } from 'src/app/models/timeslot';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 import { EmployeeListDialogComponent } from '../employee-list-dialog/employee-list-dialog.component';
-import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
-import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
 const moment = require('moment');
 moment().format();
 

@@ -6,28 +6,30 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { MyErrorStateMatcher } from '../ErrorStateMatcher/ErrorStateMatcher';
-import { AlertService } from '../services/alert.service';
-import { AuthService } from '../services/auth.service';
-import { LocationService } from '../services/location.service';
-import { UserService } from '../services/user.service';
+import { MyErrorStateMatcher } from 'src/app/ErrorStateMatcher/ErrorStateMatcher';
+import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { LocationService } from 'src/app/services/location.service';
+import { UserService } from 'src/app/services/user.service';
+import { Location } from '../../models/location';
 
 @Component({
-  selector: 'app-register-location',
-  templateUrl: './register-location.component.html',
-  styleUrls: ['./register-location.component.css'],
+  selector: 'app-location-details',
+  templateUrl: './location-details.component.html',
+  styleUrls: ['./location-details.component.css'],
 })
-export class RegisterLocationComponent implements OnInit {
+export class LocationDetailsComponent implements OnInit {
   loading = false;
   submitted = false;
-
+  updatedLocation: Location;
+  id: string;
   EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   PHONENUMBER_REGEX = /(^(316|06|6)([0-9]{8}))$/;
   POSTAL_CODE_REGEX = /(^[1-9][0-9]{3})([\s]?)((?!sa|sd|ss|SA|SD|SS)[A-Za-z]{2})$/;
 
-  registerForm = new FormGroup({
+  updateForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     streetAddress: new FormControl('', [Validators.required]),
     postalCode: new FormControl('', [
@@ -45,12 +47,11 @@ export class RegisterLocationComponent implements OnInit {
     ]),
   });
 
-  hide = false;
-
   matcher = new MyErrorStateMatcher();
   constructor(
+    public route: ActivatedRoute,
     public authService: AuthService,
-    private locationService: LocationService,
+    public locationService: LocationService,
     private router: Router,
     private userService: UserService,
     private alertService: AlertService,
@@ -61,13 +62,15 @@ export class RegisterLocationComponent implements OnInit {
 
   onSubmit() {
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.updateForm.invalid) {
       return;
     }
 
     this.loading = true;
+    this.updatedLocation = this.updateForm.value;
+    this.updatedLocation._id = this.locationService.location._id;
     this.locationService
-      .register(this.registerForm.value, this.authService.user._id)
+      .update(this.updatedLocation, this.authService.user)
       .pipe(first())
       .subscribe(
         (data) => {
@@ -77,7 +80,7 @@ export class RegisterLocationComponent implements OnInit {
           this.router.navigate(['/location']);
         },
         (error) => {
-          this._snackBar.open(error.error.message, 'Ok,', {
+          this._snackBar.open(error.error.message || error.message, 'Ok,', {
             duration: 3000,
           });
         }
