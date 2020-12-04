@@ -5,10 +5,10 @@ import { User } from './user';
 
 export class Appointment {
   public _id: string;
-  public haircut: Haircut;
   constructor(
     public customer: User,
     public location: Location,
-    public timeslot: Timeslot
+    public timeslot: Timeslot,
+    public haircut: Haircut
   ) {}
 }

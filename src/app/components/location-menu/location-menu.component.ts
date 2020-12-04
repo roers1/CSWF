@@ -38,6 +38,5 @@ export class LocationMenuComponent implements OnInit {
     this.locationService
       .getLocation(this.id)
       .subscribe((data: any) => (this.locationService.location = data));
-    console.log(this.locationService.location);
   }
 }

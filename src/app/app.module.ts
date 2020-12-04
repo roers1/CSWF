@@ -47,6 +47,8 @@ import { TimeslotDialogComponent } from './components/timeslot-dialog/timeslot-d
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { CreateAppointmentDialogComponent } from './create-appointment-dialog/create-appointment-dialog.component';
+import { HaircutDialogComponent } from './haircut-dialog/haircut-dialog.component';
+import { HaircutlistComponent } from './haircutlist/haircutlist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +69,8 @@ import { CreateAppointmentDialogComponent } from './create-appointment-dialog/cr
     TimeslotDialogComponent,
     AppointmentsComponent,
     CreateAppointmentDialogComponent,
+    HaircutDialogComponent,
+    HaircutlistComponent,
   ],
   imports: [
     BrowserModule,

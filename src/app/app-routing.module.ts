@@ -12,6 +12,7 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 import { RegisterLocationComponent } from './components/register-location/register-location.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { HaircutlistComponent } from './haircutlist/haircutlist.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
         component: LocationDetailsComponent,
       },
       { path: 'employee', component: EmployeeListComponent },
+      { path: 'haircuts', component: HaircutlistComponent },
     ],
     canActivate: [AuthGuard],
   },

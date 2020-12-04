@@ -10,6 +10,7 @@ import { TimeslotService } from '../services/timeslot.service';
 import { AppointmentService } from '../services/appointment.service';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Haircut } from '../models/haircut';
 
 @Component({
   selector: 'app-create-appointment-dialog',
@@ -20,9 +21,11 @@ export class CreateAppointmentDialogComponent implements OnInit {
   locations: Location[];
   timeslots: Timeslot[];
   barbers: User[];
+  haircuts: Haircut[];
   selectedLocation: Location;
   selectedTimeslot: Timeslot;
   selectedBarber: User;
+  selectedHaircut: Haircut;
 
   constructor(
     public dialogRef: MatDialogRef<CreateAppointmentDialogComponent>,
@@ -48,7 +51,8 @@ export class CreateAppointmentDialogComponent implements OnInit {
     const appointment = new Appointment(
       this.authService.user,
       this.selectedLocation,
-      this.selectedTimeslot
+      this.selectedTimeslot,
+      this.selectedHaircut
     );
 
     this.appointmentService.postAppointment(appointment).subscribe(
@@ -66,7 +70,7 @@ export class CreateAppointmentDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  updateEmployee(event): void {
+  update(event): void {
     if (this.selectedLocation === undefined) {
       this.timeslots = [];
       this.barbers = [];
@@ -74,6 +78,12 @@ export class CreateAppointmentDialogComponent implements OnInit {
     this.userService
       .getUsersFromLocation(this.selectedLocation)
       .subscribe((data: User[]) => (this.barbers = data));
+
+    this.locationService
+      .getHaircuts(this.selectedLocation)
+      .subscribe((data: Haircut[]) => {
+        this.haircuts = data;
+      });
     this.timeslots = [];
   }
 
@@ -81,11 +91,5 @@ export class CreateAppointmentDialogComponent implements OnInit {
     this.timeslotService
       .getFreeTimeslots(this.selectedBarber._id, this.selectedLocation._id)
       .subscribe((data: Timeslot[]) => (this.timeslots = data));
-  }
-
-  CHECKLOCATION(): void {
-    console.log(this.locations);
-    console.log(this.barbers);
-    console.log(this.timeslots);
   }
 }

@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { Location } from '../models/location';
 import * as _ from 'lodash';
 import { User } from '../models/user';
+import { Haircut } from '../models/haircut';
+import { HaircutDialogComponent } from '../haircut-dialog/haircut-dialog.component';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +41,40 @@ export class LocationService {
       map((data: any) => data.locations),
       catchError(this.handleError<Location[]>('getLocations', []))
     );
+  }
+
+  addHaircut(haircut: Haircut, location: Location) {
+    let httpOptionsPost = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        jwtToken: localStorage.getItem('jwtToken'),
+        locationid: location._id,
+      }),
+    };
+    console.log(haircut);
+    haircut.location = location;
+    console.log(haircut);
+
+    return this.http
+      .post(`${environment.API}haircut`, haircut, httpOptionsPost)
+      .pipe(catchError(this.handleError<Location>('addHaircut')));
+  }
+
+  getHaircuts(location: Location) {
+    let httpOptionsPost = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        jwtToken: localStorage.getItem('jwtToken'),
+        locationid: location._id,
+      }),
+    };
+
+    return this.http
+      .get<Haircut[]>(`${environment.API}haircut/location`, httpOptionsPost)
+      .pipe(
+        map((data: any) => data.haircuts),
+        catchError(this.handleError<Haircut[]>('getHaircuts', []))
+      );
   }
 
   addUser(locationid: string, userid: string) {

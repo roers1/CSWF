@@ -1,0 +1,53 @@
+<div mat-subheader>
+  <h1>Create a new haircut bellow</h1>
+</div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          type="string"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="registerForm.controls['name'].errors?.required"
+          >Name is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group col-md-6">
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          formControlName="price"
+          type="Number"
+          [errorStateMatcher]="matcher"
+          currency-mask
+        />
+        <mat-error *ngIf="registerForm.controls['price'].errors?.required"
+          >Price is required
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls['price'].errors?.pattern"
+          >Provide a valid price please :)
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6" style="margin: 5px">
+      <button
+        mat-raised-button
+        style="width: 100%"
+        color="primary"
+        [disabled]="!registerForm.valid"
+        type="submit"
+      >
+        Add haircut
+      </button>
+    </div>
+  </div>
+</form>
+<button class="col" mat-raised-button (click)="onNoClick()">Close</button>

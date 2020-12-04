@@ -1,0 +1,21 @@
+<div *ngIf="this.haircuts == undefined || this.haircuts.length == 0">
+  Geen mogelijke kapsels op deze locatie, je moet ze toevoegen anders kan er
+  geen afspraak gemaakt worden.
+</div>
+<mat-list>
+  <div mat-subheader>
+    <h1>Haircut offers on this location:</h1>
+  </div>
+  <mat-list-item *ngFor="let haircut of haircuts">
+    <mat-icon mat-list-icon>build</mat-icon>
+    <div mat-line><b>Haircut: </b> {{ haircut.name }}</div>
+    <mat-icon style="color: #e74040">delete</mat-icon>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+
+<div class="form-row">
+  <div class="col-md-6" style="margin: 5px">
+    <button mat-raised-button (click)="openDialog()">Add haircut</button>
+  </div>
+</div>
