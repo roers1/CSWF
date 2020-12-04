@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.pattern(this.PASSWORD_REGEX),
     ]),
+    employee: new FormControl(false),
   });
   hide = false;
   matcher = new MyErrorStateMatcher();

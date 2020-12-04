@@ -30,7 +30,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AccountMenuComponent } from './components/account-menu/account-menu.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { BeschrijvingComponent } from './components/beschrijving/beschrijving.component';
 import { EmployeeListDialogComponent } from './components/employee-list-dialog/employee-list-dialog.component';
@@ -45,7 +44,9 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 import { RegisterLocationComponent } from './components/register-location/register-location.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TimeslotDialogComponent } from './components/timeslot-dialog/timeslot-dialog.component';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { CreateAppointmentDialogComponent } from './create-appointment-dialog/create-appointment-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,8 +64,9 @@ import { TimeslotDialogComponent } from './components/timeslot-dialog/timeslot-d
     EmployeeListComponent,
     LocationMenuComponent,
     EmployeeListDialogComponent,
-    AccountMenuComponent,
     TimeslotDialogComponent,
+    AppointmentsComponent,
+    CreateAppointmentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,6 +93,7 @@ import { TimeslotDialogComponent } from './components/timeslot-dialog/timeslot-d
     MatGridListModule,
     MatDatepickerModule,
     MatMenuModule,
+    MatCheckboxModule,
   ],
   providers: [AuthGuard, AlertService, AuthService, UserService],
 

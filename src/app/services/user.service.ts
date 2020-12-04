@@ -5,9 +5,10 @@ import { Environment } from '@angular/compiler-cli/src/ngtsc/typecheck/src/envir
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Timeslot } from '../models/timeslot';
 import { User } from '../models/user';
+import { Location } from '../models/location';
 
 @Injectable({
   providedIn: 'root',
@@ -44,17 +45,19 @@ export class UserService {
       .pipe(catchError(this.handleError<User>('registerUser')));
   }
 
-  addTimeSlot(timeslot: Timeslot, user) {
+  getUsersFromLocation(location: Location) {
     let httpOptionsUpdate = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         jwtToken: localStorage.getItem('jwtToken'),
-        userid: user._id,
       }),
     };
     return this.http
-      .post(`${environment.API}timeslot`, { timeslot }, httpOptionsUpdate)
-      .pipe(catchError(this.handleError<Timeslot>('registerUser')));
+      .get(`${environment.API}user/location/${location._id}`, httpOptionsUpdate)
+      .pipe(
+        map((data: any) => data.users),
+        catchError(this.handleError<User>('registerUser'))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

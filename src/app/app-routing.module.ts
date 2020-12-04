@@ -11,14 +11,24 @@ import { LoginComponent } from './components/login/login.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { RegisterLocationComponent } from './components/register-location/register-location.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'account', component: MyAccountComponent },
-  { path: 'locations', component: LocationComponent },
-  { path: 'registerLocation', component: RegisterLocationComponent },
+  { path: 'account', component: MyAccountComponent, canActivate: [AuthGuard] },
+  {
+    path: 'appointments',
+    component: AppointmentsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'locations', component: LocationComponent, canActivate: [AuthGuard] },
+  {
+    path: 'registerLocation',
+    component: RegisterLocationComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'location/:id',
     component: LocationMenuComponent,
@@ -29,6 +39,7 @@ const routes: Routes = [
       },
       { path: 'employee', component: EmployeeListComponent },
     ],
+    canActivate: [AuthGuard],
   },
   { path: 'beschrijving', component: BeschrijvingComponent },
 

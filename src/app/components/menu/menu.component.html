@@ -19,7 +19,7 @@
           My Account
         </button>
       </div>
-      <button mat-button [routerLink]="'/contacts'" class="header_button">
+      <button mat-button [routerLink]="'/appointments'" class="header_button">
         appointments
       </button>
       <div style="display: inline" *ngIf="authService.admin">
@@ -35,8 +35,8 @@
           <button [routerLink]="'/locations'" mat-menu-item>
             <span>Locations</span>
           </button>
-          <button [routerLink]="'/employee'" mat-menu-item>
-            <span>Employees</span>
+          <button [routerLink]="'/register'" mat-menu-item>
+            <span>Register employee</span>
           </button>
         </mat-menu>
       </div>

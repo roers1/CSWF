@@ -7,6 +7,7 @@ import { MyErrorStateMatcher } from 'src/app/ErrorStateMatcher/ErrorStateMatcher
 import { Timeslot } from 'src/app/models/timeslot';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { TimeslotService } from 'src/app/services/timeslot.service';
 import { UserService } from 'src/app/services/user.service';
 import { EmployeeListDialogComponent } from '../employee-list-dialog/employee-list-dialog.component';
 const moment = require('moment');
@@ -27,7 +28,8 @@ export class TimeslotDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public user: User,
     public userService: UserService,
     public authService: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private timeslotService: TimeslotService
   ) {}
 
   registerForm = new FormGroup({
@@ -80,11 +82,12 @@ export class TimeslotDialogComponent implements OnInit {
 
     console.log(timeslot);
 
-    this.userService
+    this.timeslotService
       .addTimeSlot(timeslot, this.authService.user)
       .pipe(first())
       .subscribe(
         (data) => {
+          this.authService.user.timeslot.push(timeslot);
           this._snackBar.open(data['message'], 'Ok', {
             duration: 2000,
           });

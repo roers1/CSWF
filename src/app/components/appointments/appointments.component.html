@@ -1,0 +1,26 @@
+<mat-list>
+  <div mat-subheader>
+    <h1>Appointments</h1>
+  </div>
+  <mat-list-item *ngFor="let appointment of appointments">
+    <mat-icon mat-list-icon>calendar_today</mat-icon>
+    <div mat-line><b>Location: </b>{{ appointment.location.name }}</div>
+    <div mat-line>
+      <b>Your barber is: </b>{{ appointment.timeslot.barber.firstName }}
+    </div>
+    <div mat-line>
+      {{ appointment.timeslot.startTime | date: "d/LLL/yy, h:mm" }} -
+      {{ appointment.timeslot.endTime | date: "h:mm" }}
+    </div>
+
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+
+<div class="form-row">
+  <div class="col-md-6" style="margin: 5px">
+    <button mat-raised-button (click)="openDialog()">
+      Schedule appointment
+    </button>
+  </div>
+</div>

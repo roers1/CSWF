@@ -32,7 +32,6 @@ export class AuthService {
         map((res) => {
           if (res) {
             this.user = res.user;
-            console.log(this.user);
             this.admin = this.user.employee;
             localStorage.setItem('jwtToken', res.token);
             this.loggedIn = true;
@@ -55,6 +54,7 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     this.loggedIn = false;
+    this.admin = false;
     localStorage.removeItem('jwtToken');
     this.user = null;
   }

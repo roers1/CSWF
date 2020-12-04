@@ -35,9 +35,10 @@ export class LocationService {
   }
 
   getLocations(): Observable<Location[]> {
-    return this.http
-      .get<Location[]>(`${environment.API}location`)
-      .pipe(catchError(this.handleError<Location[]>('getLocations', [])));
+    return this.http.get<Location[]>(`${environment.API}location`).pipe(
+      map((data: any) => data.locations),
+      catchError(this.handleError<Location[]>('getLocations', []))
+    );
   }
 
   addUser(locationid: string, userid: string) {

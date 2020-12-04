@@ -1,5 +1,7 @@
-﻿﻿import { Location } from './location';
+﻿﻿import { Appointment } from './appointment';
+import { Location } from './location';
 import { Timeslot } from './timeslot';
+
 export class User {
   constructor(
     public _id: string,
@@ -14,6 +16,7 @@ export class User {
     public password: string,
     public employee: boolean,
     public location: Location,
-    public timeslot: Timeslot[]
+    public timeslot: Timeslot[],
+    public appointments: Appointment[]
   ) {}
 }

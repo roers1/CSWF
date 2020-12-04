@@ -62,6 +62,9 @@ export class EmployeeListComponent implements OnInit {
                 this._snackBar.open(data['message'], 'Ok', {
                   duration: 2000,
                 });
+                if (this.authService.user._id === employee._id) {
+                  this.authService.user.location = this.locationService.location;
+                }
               },
               (error) => {
                 console.log(error);

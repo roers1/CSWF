@@ -2,34 +2,20 @@
   Geen werknemers op deze locatie, snel voeg ze toe anders gaat de locatie
   failliet
 </div>
-<div class="list-group">
-  <div *ngFor="let employee of locationService.location.employee">
-    <div class="row">
-      <div class="col-md-2">
-        <mat-icon
-          style="font-size: 3.2em; width: fit-content; height: fit-content"
-          >person_pin</mat-icon
-        >
-      </div>
-      <div class="col">
-        <div style="margin-left: 20px; margin-right: 20px; width: 100%">
-          <p style="margin-bottom: 2px">
-            {{ employee.firstName }} {{ employee.lastName }}
-          </p>
-          <p style="color: #7c7c7c">{{ employee.streetAddress }}</p>
-        </div>
-      </div>
-
-      <div class="col">
-        <button mat-icon-button style="transform: scale(1.5)">
-          <mat-icon style="color: #e74040">remove_circle_outline</mat-icon>
-        </button>
-      </div>
-    </div>
-
-    <hr />
+<mat-list>
+  <div mat-subheader>
+    <h1>Employees working on this location:</h1>
   </div>
-</div>
+  <mat-list-item *ngFor="let employee of locationService.location.employee">
+    <mat-icon mat-list-icon>person_pin</mat-icon>
+    <div mat-line>
+      <b>Employee name: </b> {{ employee.firstName }} {{ employee.lastName }}
+    </div>
+    <div mat-line><b>Streetaddress: </b>{{ employee.streetAddress }}</div>
+    <mat-icon style="color: #e74040">delete</mat-icon>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
 
 <div class="form-row">
   <div class="col-md-6" style="margin: 5px">
