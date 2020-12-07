@@ -4,15 +4,13 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  FormGroupDirective,
-  NgForm,
   Validators,
 } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MyErrorStateMatcher } from 'src/app/ErrorStateMatcher/ErrorStateMatcher';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { MyErrorStateMatcher } from '../misc/ErrorStateMatcher/ErrorStateMatcher';
 
 @Component({
   selector: 'app-login',
@@ -38,11 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private alertService: AlertService,
     private _snackBar: MatSnackBar
   ) {}
 

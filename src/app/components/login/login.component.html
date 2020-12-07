@@ -1,10 +1,6 @@
 <div class="center" style="padding-top: 100px">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="width: 40%">
     <h2 class="title">Log in</h2>
-
-    <!-- <h5 class="error-text" [hidden]="errorBool">Wachtwoord en/of gebruikersnaam klopt niet!</h5> -->
-    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar> -->
-
     <div mat-dialog-content>
       <mat-form-field class="custom_form" appearance="fill">
         <input

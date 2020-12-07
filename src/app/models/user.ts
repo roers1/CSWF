@@ -10,7 +10,7 @@ export class User {
     public streetAddress: string,
     public postalCode: string,
     public city: string,
-    public dateOfBirth: string,
+    public dateOfBirth: Date,
     public phoneNumber: number,
     public email: string,
     public password: string,

@@ -7,7 +7,6 @@ import { Location } from '../models/location';
 import * as _ from 'lodash';
 import { User } from '../models/user';
 import { Haircut } from '../models/haircut';
-import { HaircutDialogComponent } from '../haircut-dialog/haircut-dialog.component';
 
 @Injectable({
   providedIn: 'root',

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/AuthGuards/auth.guard';
-import { BeschrijvingComponent } from './components/beschrijving/beschrijving.component';
-import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { HomeComponent } from './components/home/home.component';
-import { LocationDetailsComponent } from './components/location-details/location-details.component';
-import { LocationMenuComponent } from './components/location-menu/location-menu.component';
-import { LocationComponent } from './components/location/location.component';
+import { AppointmentsComponent } from './components/lists/appointments/appointments.component';
+import { EmployeeListComponent } from './components/lists/employee-list/employee-list.component';
+import { HaircutlistComponent } from './components/lists/haircutlist/haircutlist.component';
+import { LocationComponent } from './components/lists/location/location.component';
 import { LoginComponent } from './components/login/login.component';
-import { MyAccountComponent } from './components/my-account/my-account.component';
-import { RegisterLocationComponent } from './components/register-location/register-location.component';
-import { RegisterComponent } from './components/register/register.component';
-import { AppointmentsComponent } from './components/appointments/appointments.component';
-import { HaircutlistComponent } from './haircutlist/haircutlist.component';
+import { LocationMenuComponent } from './components/menus/location-menu/location-menu.component';
+import { BeschrijvingComponent } from './components/misc/beschrijving/beschrijving.component';
+import { LocationDetailsComponent } from './components/overviews/location-details/location-details.component';
+import { MyAccountComponent } from './components/overviews/my-account/my-account.component';
+import { RegisterLocationComponent } from './components/registers/register-location/register-location.component';
+import { RegisterComponent } from './components/registers/register/register.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

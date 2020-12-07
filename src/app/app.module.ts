@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AlertComponent } from './alert/alert.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthGuard } from 'src/AuthGuards/auth.guard';
 import { AlertService } from './services/alert.service';
@@ -19,40 +18,35 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {
-  ErrorStateMatcher,
-  MatNativeDateModule,
-  ShowOnDirtyErrorStateMatcher,
-} from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AdminComponent } from './components/admin/admin.component';
-import { BeschrijvingComponent } from './components/beschrijving/beschrijving.component';
-import { EmployeeListDialogComponent } from './components/employee-list-dialog/employee-list-dialog.component';
-import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { CreateAppointmentDialogComponent } from './components/dialogs/create-appointment-dialog/create-appointment-dialog.component';
+import { EmployeeListDialogComponent } from './components/dialogs/employee-list-dialog/employee-list-dialog.component';
+import { HaircutDialogComponent } from './components/dialogs/haircut-dialog/haircut-dialog.component';
+import { TimeslotDialogComponent } from './components/dialogs/timeslot-dialog/timeslot-dialog.component';
 import { HomeComponent } from './components/home/home.component';
-import { LocationDetailsComponent } from './components/location-details/location-details.component';
-import { LocationMenuComponent } from './components/location-menu/location-menu.component';
-import { LocationComponent } from './components/location/location.component';
+import { AppointmentsComponent } from './components/lists/appointments/appointments.component';
+import { EmployeeListComponent } from './components/lists/employee-list/employee-list.component';
+import { HaircutlistComponent } from './components/lists/haircutlist/haircutlist.component';
+import { LocationComponent } from './components/lists/location/location.component';
 import { LoginComponent } from './components/login/login.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { MyAccountComponent } from './components/my-account/my-account.component';
-import { RegisterLocationComponent } from './components/register-location/register-location.component';
-import { RegisterComponent } from './components/register/register.component';
-import { TimeslotDialogComponent } from './components/timeslot-dialog/timeslot-dialog.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { AppointmentsComponent } from './components/appointments/appointments.component';
-import { CreateAppointmentDialogComponent } from './create-appointment-dialog/create-appointment-dialog.component';
-import { HaircutDialogComponent } from './haircut-dialog/haircut-dialog.component';
-import { HaircutlistComponent } from './haircutlist/haircutlist.component';
+import { LocationMenuComponent } from './components/menus/location-menu/location-menu.component';
+import { MenuComponent } from './components/menus/menu/menu.component';
+import { BeschrijvingComponent } from './components/misc/beschrijving/beschrijving.component';
+import { LocationDetailsComponent } from './components/overviews/location-details/location-details.component';
+import { MyAccountComponent } from './components/overviews/my-account/my-account.component';
+import { RegisterLocationComponent } from './components/registers/register-location/register-location.component';
+import { RegisterComponent } from './components/registers/register/register.component';
+import { AlertComponent } from './components/misc/alert/alert.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
     HomeComponent,
     LocationComponent,
     LoginComponent,
@@ -97,7 +91,6 @@ import { HaircutlistComponent } from './haircutlist/haircutlist.component';
     MatGridListModule,
     MatDatepickerModule,
     MatMenuModule,
-    MatCheckboxModule,
   ],
   providers: [AuthGuard, AlertService, AuthService, UserService],
 
