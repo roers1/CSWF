@@ -140,7 +140,7 @@ export class LocationService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
+      console.error(error);
 
       console.log(`${operation} failed: ${error.message}`);
 

@@ -43,6 +43,7 @@ import { MyAccountComponent } from './components/overviews/my-account/my-account
 import { RegisterLocationComponent } from './components/registers/register-location/register-location.component';
 import { RegisterComponent } from './components/registers/register/register.component';
 import { AlertComponent } from './components/misc/alert/alert.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { AlertComponent } from './components/misc/alert/alert.component';
     MatGridListModule,
     MatDatepickerModule,
     MatMenuModule,
+    MatCheckboxModule,
   ],
   providers: [AuthGuard, AlertService, AuthService, UserService],
 
