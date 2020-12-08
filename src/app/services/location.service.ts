@@ -86,7 +86,6 @@ export class LocationService {
       }),
     };
 
-    console.log(`${environment.API}location/employee`);
     return this.http
       .put(`${environment.API}location/employee`, {}, httpOptionsUpdate)
       .pipe(catchError(this.handleError<string>('getLocation', userid)));
@@ -100,7 +99,6 @@ export class LocationService {
         id: user._id,
       }),
     };
-    console.log(location);
 
     return this.http
       .put(`${environment.API}location`, { location }, httpOptionsUpdate)

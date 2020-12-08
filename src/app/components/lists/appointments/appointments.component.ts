@@ -31,7 +31,7 @@ export class AppointmentsComponent implements OnInit {
     const dialogRef = this.appointmentDialog.open(
       CreateAppointmentDialogComponent,
       {
-        width: '600px',
+        width: '800px',
       }
     );
     dialogRef.beforeClosed();

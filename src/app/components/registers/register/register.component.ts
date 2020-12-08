@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          this._snackBar.open(error.error.message, 'Ok,', {
+          this._snackBar.open(error.error.message || error.message, 'Ok,', {
             duration: 3000,
           });
         }

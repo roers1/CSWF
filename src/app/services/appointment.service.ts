@@ -50,9 +50,11 @@ export class AppointmentService {
       }),
     };
     console.log(appointment);
-    return this.http
-      .post(`${environment.API}appointment`, appointment, httpOptionsPost)
-      .pipe(catchError(this.handleError<Appointment>('postAppointment')));
+    return this.http.post(
+      `${environment.API}appointment`,
+      appointment,
+      httpOptionsPost
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

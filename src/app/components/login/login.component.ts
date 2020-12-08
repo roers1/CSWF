@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['']);
         },
         (error) => {
-          this._snackBar.open(error, 'Ok', {
+          this._snackBar.open(error.error.message, 'Ok', {
             duration: 2000,
           });
         }

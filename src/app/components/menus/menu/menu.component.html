@@ -7,7 +7,12 @@
         <button mat-button [routerLink]="'/login'" class="header_button">
           login
         </button>
-        <button mat-button [routerLink]="'/register'" class="header_button">
+        <button
+          id="test"
+          mat-button
+          [routerLink]="'/register'"
+          class="header_button"
+        >
           Create Account
         </button>
       </div>
@@ -15,7 +20,12 @@
         <button mat-button [routerLink]="'/login'" class="header_button">
           Logout
         </button>
-        <button mat-button [routerLink]="'/account'" class="header_button">
+        <button
+          id="accountButton"
+          mat-button
+          [routerLink]="'/account'"
+          class="header_button"
+        >
           My Account
         </button>
       </div>
@@ -28,11 +38,16 @@
           [matMenuTriggerFor]="menu"
           aria-label="Example icon-button with a menu"
           class="header_button"
+          id="adminButton"
         >
           Admin
         </button>
         <mat-menu #menu="matMenu">
-          <button [routerLink]="'/locations'" mat-menu-item>
+          <button
+            [routerLink]="'/locations'"
+            mat-menu-item
+            id="locationsButton"
+          >
             <span>Locations</span>
           </button>
           <button [routerLink]="'/register'" mat-menu-item>

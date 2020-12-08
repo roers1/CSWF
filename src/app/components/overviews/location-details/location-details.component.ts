@@ -68,7 +68,6 @@ export class LocationDetailsComponent implements OnInit {
           this._snackBar.open(data['message'], 'Ok', {
             duration: 2000,
           });
-          this.router.navigate(['/location']);
         },
         (error) => {
           this._snackBar.open(error.error.message || error.message, 'Ok,', {

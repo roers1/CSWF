@@ -1,5 +1,5 @@
 <div class="center">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <form id="updateform" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group col-md-6">
         <mat-form-field appearance="fill">
@@ -10,6 +10,7 @@
             formControlName="firstName"
             type="firstName"
             [errorStateMatcher]="matcher"
+            id="firstName"
           />
           <mat-error *ngIf="registerForm.controls['firstName'].errors?.required"
             >Firstname is required
@@ -25,8 +26,11 @@
             formControlName="lastName"
             type="lastName"
             [errorStateMatcher]="matcher"
+            id="lastName"
           />
-          <mat-error *ngIf="registerForm.controls['lastName'].errors?.required"
+          <mat-error
+            id="lastNameError"
+            *ngIf="registerForm.controls['lastName'].errors?.required"
             >Lastname is required
           </mat-error>
         </mat-form-field>
@@ -164,11 +168,12 @@
           color="primary"
           [disabled]="!registerForm.valid"
           type="submit"
+          id="submitAccountButton"
         >
           Update my account
         </button>
       </div>
-      <div class="col-md-6" style="margin: 5px">
+      <div *ngIf="authService.admin" class="col-md-6" style="margin: 5px">
         <a mat-raised-button (click)="openDialog()">My Timeslots</a>
       </div>
     </div>

@@ -26,9 +26,11 @@ export class UserService {
   }
 
   register(user: User) {
-    return this.http
-      .post(`${environment.API}user/register`, user, this.httpOptions)
-      .pipe(catchError(this.handleError<User>('registerUser')));
+    return this.http.post(
+      `${environment.API}user/register`,
+      user,
+      this.httpOptions
+    );
   }
 
   put(user: User) {

@@ -9,14 +9,21 @@
           type="email"
           formControlName="email"
           [errorStateMatcher]="matcher"
+          id="emailInputField"
         />
-        <mat-error *ngIf="loginForm.controls['email'].errors?.required"
+        <mat-error
+          id="emailErrorRequired"
+          *ngIf="loginForm.controls['email'].errors?.required"
           >Mail is required
         </mat-error>
-        <mat-error *ngIf="loginForm.controls['email'].errors?.pattern"
+        <mat-error
+          id="emailErrorInvalid"
+          *ngIf="loginForm.controls['email'].errors?.pattern"
           >Invalid e-mail format
         </mat-error>
-        <mat-error *ngIf="loginForm.controls['email'].errors?.maxlength"
+        <mat-error
+          id="emailErrorToLong"
+          *ngIf="loginForm.controls['email'].errors?.maxlength"
           >E-mail is rediculous long</mat-error
         >
       </mat-form-field>
@@ -30,8 +37,11 @@
           formControlName="password"
           type="password"
           [errorStateMatcher]="matcher"
+          id="passwordInputField"
         />
-        <mat-error *ngIf="loginForm.controls['password'].errors?.required"
+        <mat-error
+          id="passwordErrorRequired"
+          *ngIf="loginForm.controls['password'].errors?.required"
           >Password is required
         </mat-error>
       </mat-form-field>
@@ -39,6 +49,7 @@
 
     <div>
       <button
+        id="submitButton"
         style="width: 100%"
         mat-raised-button
         color="primary"
