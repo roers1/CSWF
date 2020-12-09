@@ -156,9 +156,11 @@
             matInput
             [type]="hide ? 'password' : 'text'"
             formControlName="password"
-            type="password"
             [errorStateMatcher]="matcher"
           />
+          <mat-icon matSuffix class="eye-icon" (click)="hide = !hide">
+            {{ hide ? "visibility_off" : "visibility" }}</mat-icon
+          >
           <mat-error *ngIf="registerForm.controls['password'].errors?.pattern"
             >Password needs eight characters, at least one letter, at least one
             capitalised letter and one number
