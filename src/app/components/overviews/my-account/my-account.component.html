@@ -173,7 +173,11 @@
           Update my account
         </button>
       </div>
-      <div *ngIf="authService.admin" class="col-md-6" style="margin: 5px">
+      <div
+        *ngIf="authService.admin && authService.user.location._id !== undefined"
+        class="col-md-6"
+        style="margin: 5px"
+      >
         <a mat-raised-button (click)="openDialog()">My Timeslots</a>
       </div>
     </div>
