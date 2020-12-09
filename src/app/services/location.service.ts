@@ -50,9 +50,7 @@ export class LocationService {
         locationid: location._id,
       }),
     };
-    console.log(haircut);
     haircut.location = location;
-    console.log(haircut);
 
     return this.http
       .post(`${environment.API}haircut`, haircut, httpOptionsPost)

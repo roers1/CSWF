@@ -44,15 +44,16 @@ export class EmployeeListComponent implements OnInit {
       if (employee !== undefined) {
         this.locationService
           .addUser(this.locationService.location._id, employee._id)
-          .subscribe(() => {
+          .subscribe((data) => {
+            this._snackBar.open(data['message'], 'Ok', {
+              duration: 2000,
+            });
             this.locationService
               .getLocation(this.locationService.location._id)
               .subscribe(
                 (data: any) => {
                   this.locationService.location = data;
-                  this._snackBar.open(data['message'], 'Ok', {
-                    duration: 2000,
-                  });
+
                   if (this.authService.user._id === employee._id) {
                     this.authService.user.location = this.locationService.location;
                   }

@@ -52,6 +52,7 @@ export class HaircutDialogComponent implements OnInit {
           this._snackBar.open(data['message'], 'Ok', {
             duration: 2000,
           });
+          this.onNoClick();
         },
         (error) => {
           console.log(error);
